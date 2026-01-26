@@ -2,15 +2,18 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { VerifyService } from '../../services/verify.service';
+import { GoogleAdComponent } from '../google-ad/google-ad.component';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-step3',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, GoogleAdComponent],
   templateUrl: './step3.component.html',
   styleUrl: './step3.component.css'
 })
 export class Step3Component implements OnInit, OnDestroy {
+  adSlots = environment.adSlots;
   timeLeft = 8;
   showGetLinkBtn = false;
   isVerifying = false;

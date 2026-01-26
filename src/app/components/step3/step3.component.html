@@ -40,7 +40,7 @@
         </div>
 
         <div class="action-card">
-            <div class="ad-placeholder">Premium Ad Placement</div>
+            <app-google-ad [adSlot]="adSlots.rectangle"></app-google-ad>
 
             <div *ngIf="!showGetLinkBtn && !isSuccess" class="timer-display">
                 Final verification in <strong>{{ timeLeft }}</strong>s
@@ -53,7 +53,7 @@
             </button>
 
             <div class="google-ad-footer">
-                <div class="ad-placeholder">Google Advertisement (Final)</div>
+                <app-google-ad [adSlot]="adSlots.bottom"></app-google-ad>
             </div>
         </div>
     </div>

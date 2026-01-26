@@ -2,15 +2,18 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { VerifyService } from '../../services/verify.service';
+import { GoogleAdComponent } from '../google-ad/google-ad.component';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-step2',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, GoogleAdComponent],
   templateUrl: './step2.component.html',
   styleUrl: './step2.component.css'
 })
 export class Step2Component implements OnInit, OnDestroy {
+  adSlots = environment.adSlots;
   timeLeft = 15;
   timerStarted = false;
   showContinueBtn = false;

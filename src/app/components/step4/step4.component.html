@@ -4,7 +4,7 @@
         <p>Redirecting to Telegram in {{ timeLeft }} seconds...</p>
     </div>
 
-    <div class="ad-placeholder">Google Advertisement (Top)</div>
+    <app-google-ad [adSlot]="adSlots.top"></app-google-ad>
 
     <div class="blog-card bot-details-card">
         <div class="card-header">
@@ -42,14 +42,14 @@
         </button>
     </div>
 
-    <div class="ad-placeholder ad-large">Google Advertisement (Rectangle)</div>
-    <div class="ad-placeholder">Google Advertisement (Middle)</div>
+    <app-google-ad [adSlot]="adSlots.rectangle" adFormat="rectangle"></app-google-ad>
+    <app-google-ad [adSlot]="adSlots.middle"></app-google-ad>
 
     <article class="blog-card mini-blog">
         <h3>Recommended for you</h3>
         <p>How to secure your Telegram account from hackers in 2026.</p>
-        <div class="ad-placeholder">Google Advertisement (Small)</div>
+        <app-google-ad [adSlot]="adSlots.middle" [customStyle]="{'min-height': '50px'}"></app-google-ad>
     </article>
 
-    <div class="ad-placeholder">Google Advertisement (Footer)</div>
+    <app-google-ad [adSlot]="adSlots.bottom"></app-google-ad>
 </div>

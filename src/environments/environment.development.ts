@@ -1,5 +1,12 @@
 export const environment = {
     production: false,
-    apiUrl: 'http://192.168.0.199:8000',
-    frontendUrl: 'http://192.168.0.199:4200'
+    apiUrl: 'https://talagram-movie-google-ads-bot.onrender.com',
+    frontendUrl: 'http://192.168.0.199:4200',
+    adSenseId: 'ca-pub-4448362911093439',
+    adSlots: {
+        top: '0000000001',
+        middle: '0000000002',
+        bottom: '0000000003',
+        rectangle: '0000000004'
+    }
 };

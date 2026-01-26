@@ -12,7 +12,7 @@
         <h2 *ngIf="showContinueBtn">Verification Step 2 Complete!</h2>
     </div>
 
-    <div class="ad-placeholder">Google Advertisement (Top)</div>
+    <app-google-ad [adSlot]="adSlots.top"></app-google-ad>
 
     <article class="blog-card">
         <h1>The Rise of Edge Computing in 2026</h1>
@@ -23,14 +23,14 @@
             Edge computing is transforming how we process data. By bringing computation closer to the source, we can
             achieve near-zero latency for critical applications...
         </p>
-        <div class="ad-placeholder">Google Advertisement (In-Article)</div>
+        <app-google-ad [adSlot]="adSlots.middle"></app-google-ad>
         <p>
             This is especially important for IoT, autonomous vehicles, and real-time gaming. In this article, we dive
             deep into the latest edge networking protocols.
         </p>
     </article>
 
-    <div class="ad-placeholder">Google Advertisement (Middle)</div>
+    <app-google-ad [adSlot]="adSlots.middle"></app-google-ad>
 
     <article class="blog-card">
         <h1>Web Performance: Beyond Core Web Vitals</h1>
@@ -42,7 +42,7 @@
             style="width: 100%; border-radius: 0.5rem; margin: 1rem 0;">
     </article>
 
-    <div class="ad-placeholder">Google Advertisement (Bottom)</div>
+    <app-google-ad [adSlot]="adSlots.bottom"></app-google-ad>
 
     <div *ngIf="showContinueBtn" class="blog-card" style="text-align: center; border-color: var(--secondary);">
         <p>You have waited for the required time. You can now move to the final step.</p>

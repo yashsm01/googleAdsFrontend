@@ -1,15 +1,18 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { VerifyService } from '../../services/verify.service';
+import { GoogleAdComponent } from '../google-ad/google-ad.component';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-step4',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, GoogleAdComponent],
   templateUrl: './step4.component.html',
   styleUrl: './step4.component.css'
 })
 export class Step4Component implements OnInit, OnDestroy {
+  adSlots = environment.adSlots;
   botData: any;
   timeLeft = 5;
   interval: any;

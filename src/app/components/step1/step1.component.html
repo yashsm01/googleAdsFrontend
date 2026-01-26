@@ -12,7 +12,7 @@
         </button>
     </div>
 
-    <div class="ad-placeholder">Google Advertisement (Top)</div>
+    <app-google-ad [adSlot]="adSlots.top"></app-google-ad>
 
     <article class="blog-card">
         <h1>The Future of AI in Modern Software Development</h1>
@@ -23,7 +23,7 @@
             Artificial Intelligence is no longer just a buzzword; it's a fundamental part of the modern developer's
             toolkit. From GitHub Copilot to advanced LLMs, the way we write code is changing forever...
         </p>
-        <div class="ad-placeholder">Google Advertisement (In-Article)</div>
+        <app-google-ad [adSlot]="adSlots.middle"></app-google-ad>
         <p>
             But it's not just about code generation. AI is helping in testing, security analysis, and even performance
             optimization. Modern frameworks like Angular are also integrating AI-driven tools to enhance the developer
@@ -39,14 +39,14 @@
         </p>
         <img src="https://picsum.photos/800/450" alt="Architecture"
             style="width: 100%; border-radius: 0.5rem; margin: 1rem 0;">
-        <div class="ad-placeholder">Google Advertisement (Middle)</div>
+        <app-google-ad [adSlot]="adSlots.middle"></app-google-ad>
         <p>
             By following these principles, teams can ensure their codebase remains maintainable and testable over the
             long term, even as technologies change.
         </p>
     </article>
 
-    <div class="ad-placeholder">Google Advertisement (Bottom)</div>
+    <app-google-ad [adSlot]="adSlots.bottom"></app-google-ad>
 
     <!-- Continue button at the bottom -->
     <div *ngIf="showContinueBtn" class="blog-card" style="text-align: center; border-color: var(--secondary);">
