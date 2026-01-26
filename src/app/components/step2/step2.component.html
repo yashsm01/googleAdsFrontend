@@ -55,7 +55,7 @@
                 style="text-align: center; font-size: 0.9rem; color: var(--primary); font-weight: bold; margin-bottom: 5px;">
                 Sponsored: Click below to reduce time (समय कम करने के लिए यहाँ क्लिक करें)
             </p>
-            <app-google-ad [adSlot]="adSlots.middle"></app-google-ad>
+            <app-google-ad [adSlot]="adSlots.middle" [customStyle]="{'margin-bottom': '60px'}"></app-google-ad>
 
             <p>
                 The research indicates that the primary drivers of this change are increased computational efficiency
@@ -72,8 +72,8 @@
             </p>
         </article>
 
-        <app-google-ad [adSlot]="adSlots.bottom"></app-google-ad>
-        <app-google-ad [adSlot]="adSlots.middle"></app-google-ad>
+        <app-google-ad [adSlot]="adSlots.bottom" [customStyle]="{'margin-bottom': '60px'}"></app-google-ad>
+        <app-google-ad [adSlot]="adSlots.middle" [customStyle]="{'margin-bottom': '60px'}"></app-google-ad>
     </ng-container>
 
     <!-- High Revenue Multiplex Ad Grid -->

@@ -61,16 +61,23 @@ import { CommonModule } from '@angular/common';
       font-size: 14px;
     }
     .skip-btn {
+      background: rgba(99, 102, 241, 0.3);
+      color: rgba(255, 255, 255, 0.6);
+      border: none;
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .skip-btn:hover:not(:disabled) {
       background: var(--primary);
       color: white;
-      border: none;
-      padding: 8px 16px;
-      border-radius: 4px;
-      font-weight: bold;
-      cursor: pointer;
     }
     .skip-btn:disabled {
-      background: #444;
+      background: #333;
+      color: #555;
       cursor: not-allowed;
     }
     .video-placeholder {

@@ -18,6 +18,8 @@ body {
   background-color: var(--bg);
   color: var(--text-main);
   line-height: 1.6;
+  padding-bottom: 45vh;
+  /* Extra space to see content below the massive sticky ad */
 }
 
 h1,

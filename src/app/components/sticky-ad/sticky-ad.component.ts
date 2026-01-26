@@ -10,7 +10,12 @@ import { environment as env } from '../../../environments/environment';
   template: `
     <div class="sticky-ad-wrapper" *ngIf="isVisible">
       <div class="sticky-ad-content">
-        <button class="close-btn" (click)="closeAd()" aria-label="Close Ad">×</button>
+        <button class="close-btn" (click)="closeAd()" aria-label="Close Ad">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
         <app-google-ad [adSlot]="adSlot" adFormat="horizontal" [fullWidthResponsive]="'false'"
             [customStyle]="{'margin': '0', 'min-height': '60px'}"></app-google-ad>
       </div>
@@ -22,39 +27,52 @@ import { environment as env } from '../../../environments/environment';
       bottom: 0;
       left: 0;
       width: 100%;
-      background: white;
-      box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+      height: 40vh;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 -10px 30px rgba(0,0,0,0.1);
       z-index: 9999;
       display: flex;
+      flex-direction: column;
+      align-items: center;
       justify-content: center;
-      padding: 5px 0;
+      padding: 20px;
+      border-top: 1px solid rgba(0,0,0,0.05);
     }
     .sticky-ad-content {
       position: relative;
       width: 100%;
-      max-width: 728px;
+      max-width: 800px;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     .close-btn {
       position: absolute;
-      top: -25px;
-      right: 5px;
-      background: rgba(0,0,0,0.5);
+      top: -12px; /* Half of 24px */
+      right: 20px;
+      background: #1a1a1b;
       color: white;
-      border: none;
+      border: 2.5px solid white;
       border-radius: 50%;
-      width: 20px;
-      height: 20px;
+      width: 24px;
+      height: 24px;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      font-size: 16px;
-      line-height: 1;
-      z-index: 10000;
-      transition: background 0.3s;
+      z-index: 10001;
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
     }
     .close-btn:hover {
-      background: rgba(0,0,0,0.8);
+      background: #ef4444;
+      transform: scale(1.1) rotate(90deg);
+      box-shadow: 0 6px 20px rgba(239, 68, 68, 0.4);
+    }
+    .close-btn:active {
+      transform: scale(0.9);
     }
   `]
 })
