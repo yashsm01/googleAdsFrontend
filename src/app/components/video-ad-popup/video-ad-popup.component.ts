@@ -9,14 +9,14 @@ import { CommonModule } from '@angular/common';
     <div class="video-overlay" *ngIf="isVisible">
       <div class="video-modal">
         <div class="video-header">
-          <span>Advertisement</span>
+          <span>Sponsored Content</span>
           <button class="skip-btn" [disabled]="skipCountdown > 0" (click)="closeAd()">
-            {{ skipCountdown > 0 ? 'Skip in ' + skipCountdown + 's' : 'SKIP AD' }}
+            {{ skipCountdown > 0 ? 'Skip in ' + skipCountdown + 's' : 'SKIP VIDEO' }}
           </button>
         </div>
         <div class="video-placeholder">
           <div class="spinner"></div>
-          <p>Loading High Quality Video Ad...</p>
+          <p>Loading High Quality Video...</p>
           <div class="mock-video-content">
              <!-- This would be an iframe or video tag in production -->
              <div class="ad-pulse"></div>

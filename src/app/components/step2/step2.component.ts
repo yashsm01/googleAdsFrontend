@@ -44,10 +44,42 @@ export class Step2Component implements OnInit, OnDestroy {
       this.articles.push({
         id: i,
         title: topics[i],
-        content: `As we analyze the trajectory of ${topics[i]}, it becomes evident that the industry is at a critical crossroads. The convergence of multiple technological streams is creating new possibilities that were previously unimaginable. Our research indicates that the primary drivers of this change are increased computational efficiency and the widespread availability of high-speed connectivity. In this detailed exploration, we look at the specific technical requirements for implementation and the long-term benefits for enterprises that adopt these solutions early. We also address the common challenges and pitfalls that teams encounter during the migration process.`,
+        hindiTitle: this.getHindiTitle(topics[i]),
+        content: `As we analyze the trajectory of ${topics[i]}, it becomes evident that the industry is at a critical crossroads. The convergence of multiple technological streams is creating new possibilities.`,
+        hindiContent: `जैसे ही हम ${topics[i]} की प्रगति का विश्लेषण करते हैं, यह स्पष्ट हो जाता है कि उद्योग एक महत्वपूर्ण मोड़ पर है। कई तकनीकी धाराओं का संगम नई संभावनाएं पैदा कर रहा है।`,
         image: `https://picsum.photos/800/400?random=${i + 50}`
       });
     }
+  }
+
+  getHindiTitle(topic: string): string {
+    const hindiMap: any = {
+      "Artificial Intelligence Ethics": "आर्टिफिशियल इंटेलिजेंस नैतिकता",
+      "Next-Gen Cloud Infrastructure": "अगली पीढ़ी का क्लाउड इंफ्रास्ट्रक्चर",
+      "Cyber Security in 2026": "2026 में साइबर सुरक्षा",
+      "The Rise of Decentralized AI": "विकेंद्रीकृत एआई का उदय",
+      "Quantum Networking Principles": "क्वांटम नेटवर्किंग के सिद्धांत",
+      "Advanced Data Privacy Laws": "उन्नत डेटा गोपनीयता कानून",
+      "Edge Computing Use Cases": "एज कंप्यूटिंग के उपयोग के मामले",
+      "Biometric Authentication Trends": "बायोमेट्रिक प्रमाणीकरण रुझान",
+      "Sustainable Software Engineering": "सतत सॉफ्टवेयर इंजीनियरिंग",
+      "The Impact of 6G Technology": "6G तकनीक का प्रभाव",
+      "Digital Workspace Transformation": "डिजिटल कार्यक्षेत्र परिवर्तन",
+      "API Security Best Practices": "एपीआई सुरक्षा सर्वोत्तम अभ्यास",
+      "Microservices Architecture Evolution": "माइक्रोसर्विसेज आर्किटेक्चर का विकास",
+      "The Future of Low-Code Platforms": "लो-कोड प्लेटफॉर्म का भविष्य",
+      "Blockchain for Supply Chain": "सप्लाई चेन के लिए ब्लॉकचेन",
+      "Autonomous Systems Management": "स्वायत्त प्रणालियों का प्रबंधन",
+      "Human-Augmented Intelligence": "मानव-संवर्धित बुद्धिमत्ता",
+      "Predictive Analytics in Retail": "रिटेल में भविष्य कहनेवाला विश्लेषण",
+      "Smart Manufacturing Frameworks": "स्मार्ट विनिर्माण ढांचे",
+      "The Role of AR in Engineering": "इंजीनियरिंग में एआर की भूमिका",
+      "Natural Language Processing Trends": "नेचुरल लैंग्वेज प्रोसेसिंग रुझान",
+      "Serverless Computing Performance": "सर्वरलेस कंप्यूटिंग प्रदर्शन",
+      "Data Literacy for the Masses": "जनता के लिए डेटा साक्षरता",
+      "The Evolution of DevOps Culture": "डेवऑप्स (DevOps) संस्कृति का विकास"
+    };
+    return hindiMap[topic] || topic;
   }
 
   ngOnInit() {

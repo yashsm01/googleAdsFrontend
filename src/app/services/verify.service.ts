@@ -33,6 +33,8 @@ export class VerifyService {
   }
 
   grantAccess(code: string): Observable<any> {
+    console.log('VerifyService: Initiating grantAccess with code:', code);
+    console.log('VerifyService: URL is:', this.apiUrl);
     return this.http.post(this.apiUrl, { code });
   }
 

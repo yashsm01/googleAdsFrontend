@@ -45,10 +45,42 @@ export class Step1Component implements OnInit, OnDestroy {
       this.articles.push({
         id: i,
         title: topics[i],
-        content: `Detailed research into ${topics[i]} has revealed fascinating new insights. As we move into the second half of the decade, the implications of these developments for society are becoming clearer. Experts suggest that by 2030, the adoption of these technologies will be near-universal, altering how we interact with the physical and digital world. This transformation is driven by a combination of market forces, technological readiness, and a global demand for more efficient and sustainable systems. In the following sections, we will explore the core pillars of this movement and how it affects various industrial sectors from finance to agriculture.`,
+        hindiTitle: this.getHindiTitle(topics[i]),
+        content: `Detailed research into ${topics[i]} has revealed fascinating new insights. Experts suggest that by 2030, the adoption of these technologies will be near-universal.`,
+        hindiContent: `${topics[i]} में शोध ने आकर्षक नई अंतर्दृष्टि का खुलासा किया है। विशेषज्ञों का सुझाव है कि 2030 तक इन तकनीकों को अपनाने की संभावना है।`,
         image: `https://picsum.photos/800/400?random=${i + 10}`
       });
     }
+  }
+
+  getHindiTitle(topic: string): string {
+    const hindiMap: any = {
+      "Quantum Computing Breakthroughs": "क्वांटम कंप्यूटिंग की नई खोज",
+      "The Ethical Dilemma of AGI": "एजीआई (AGI) की नैतिक दुविधा",
+      "Web3: Decentralizing the Internet": "वेब3: इंटरनेट का विकेंद्रीकरण",
+      "Biotech and Longevity": "बायोटेक और दीर्घायु",
+      "Sustainable Energy in 2026": "2026 में स्थायी ऊर्जा",
+      "Space Tourism: The New Frontier": "अंतरिक्ष पर्यटन: नया क्षितिज",
+      "Neuro-Link Interface Evolution": "न्यूरो-लिंक इंटरफेस का विकास",
+      "The Future of Smart Cities": "स्मार्ट शहरों का भविष्य",
+      "Cyber-Physical System Security": "साइबर-फिजिकल सिस्टम की सुरक्षा",
+      "Advanced Robotics in Modern Medicine": "आधुनिक चिकित्सा में उन्नत रोबोटिक्स",
+      "Hyperloop: Revolutionizing Transit": "हाइपरलूप: परिवहन में क्रांति",
+      "The Virtual Reality Workplace": "वर्चुअल रियलिटी कार्यक्षेत्र",
+      "Digital Twins in Manufacturing": "विनिर्माण में डिजिटल जुड़वां (Digital Twins)",
+      "Synthetic Biology and Global Health": "सिंथेटिक बायोलॉजी और वैश्विक स्वास्थ्य",
+      "Privacy in the Age of Surveillance": "निगरानी के युग में गोपनीयता",
+      "Nanotechnology and Material Science": "नैनो टेक्नोलॉजी और सामग्री विज्ञान",
+      "The Economics of Space Mining": "अंतरिक्ष खनन का अर्थशास्त्र",
+      "Renewable Energy Grids": "नवीकरणीय ऊर्जा ग्रिड",
+      "Algorithmic Governance": "एल्गोरिदमिक शासन",
+      "The Philosophy of Digital Existence": "डिजिटल अस्तित्व का दर्शन",
+      "Post-Quantum Cryptography": "पोस्ट-क्वांटम क्रिप्टोग्राफी",
+      "Green Architecture Innovations": "हरित वास्तुकला नवाचार",
+      "The Social Impact of Automation": "स्वचालन का सामाजिक प्रभाव",
+      "Decentralized Autonomous Organizations": "विकेंद्रीकृत स्वायत्त संगठन (DAO)"
+    };
+    return hindiMap[topic] || topic;
   }
 
   ngOnInit() {

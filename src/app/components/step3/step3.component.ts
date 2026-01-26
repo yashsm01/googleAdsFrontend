@@ -19,6 +19,7 @@ export class Step3Component implements OnInit, OnDestroy {
   isVerifying = false;
   isSuccess = false;
   error: string | null = null;
+  isTyping = true;
   interval: any;
 
   constructor(
@@ -40,6 +41,7 @@ export class Step3Component implements OnInit, OnDestroy {
         this.timeLeft--;
       } else {
         this.showGetLinkBtn = true;
+        this.isTyping = false;
         this.stopTimer();
       }
     }, 1000);
@@ -52,39 +54,47 @@ export class Step3Component implements OnInit, OnDestroy {
   }
 
   onGetLink() {
+    console.log('[DEBUG] GET LINK clicked');
+    this.error = null;
+
     const code = this.verifyService.getVerificationCode();
+    console.log('[DEBUG] Code from service:', code);
+
     if (!code) {
-      this.error = "Verification code missing. Please restart the process.";
+      this.error = "ERROR: No verification code found! Please restart from Step 1. (त्रुटि: कोई कोड नहीं मिला!)";
+      console.error('[DEBUG] Aborting: No code found in signal or localStorage');
+      return;
+    }
+
+    if (this.isVerifying) {
+      console.warn('[DEBUG] Already verifying, ignoring click.');
       return;
     }
 
     this.isVerifying = true;
-    this.error = null;
+    console.log('[DEBUG] isVerifying set to true. Calling API...');
 
     this.verifyService.grantAccess(code).subscribe({
       next: (res) => {
+        console.log('[DEBUG] API Response Received:', res);
         if (res.status === 'success' && res.data) {
           this.isSuccess = true;
-          this.isVerifying = false;
-
-          // Store bot data for the final page
           this.verifyService.setBotData(res.data);
-
-          // Show success bubble for 1s before navigating to Step 4
-          setTimeout(() => {
-            window.location.href = '/verify/step4';
-          }, 1000);
+          setTimeout(() => window.location.href = '/verify/step4', 1000);
         } else {
-          this.error = res.message || "Failed to grant access. Please try again.";
+          this.error = res.message || "Authorization failed. Please try again.";
           this.isVerifying = false;
         }
       },
       error: (err) => {
-        console.error('Final API Error:', err);
-        // Special case: if localhost 8000 is not running, I'll mock success for demo if needed,
-        // but for now I'll show error as expected in real usage.
-        this.error = "Server error or connection failed. Please ensure the backend is running.";
+        console.error('[DEBUG] API Call Failed:', err);
         this.isVerifying = false;
+
+        if (err.status === 0) {
+          this.error = "Network Error: Possible AdBlocker or Backend Offline. (नेटवर्क त्रुटि: कृपया एडब्लॉकर चेक करें या पुनः प्रयास करें।)";
+        } else {
+          this.error = `API Error (${err.status}): ${err.message}`;
+        }
       }
     });
   }
