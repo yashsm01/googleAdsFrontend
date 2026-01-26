@@ -1,0 +1,11 @@
+services:
+  - type: static
+    name: google-ads-frontend
+    env: static
+    buildCommand: npm run build
+    publishPath: dist/frontend/browser
+    routes:
+      # Support Angular routing and deep links
+      - type: rewrite
+        source: /*
+        destination: /index.html
