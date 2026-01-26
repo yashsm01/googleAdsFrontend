@@ -13,46 +13,59 @@
     </div>
 
     <app-google-ad [adSlot]="adSlots.top"></app-google-ad>
+    <app-google-ad [adSlot]="adSlots.middle"></app-google-ad>
 
-    <article class="blog-card">
-        <h1>The Future of AI in Modern Software Development</h1>
-        <p class="text-muted">Posted on January 26, 2026 by TechWriter</p>
-        <img src="https://picsum.photos/800/400" alt="Tech Blog"
-            style="width: 100%; border-radius: 0.5rem; margin: 1rem 0;">
-        <p>
-            Artificial Intelligence is no longer just a buzzword; it's a fundamental part of the modern developer's
-            toolkit. From GitHub Copilot to advanced LLMs, the way we write code is changing forever...
-        </p>
+    <!-- Extreme Density Content Loop -->
+    <ng-container *ngFor="let article of articles; let i = index">
+        <article class="blog-card">
+            <h1>{{ i + 1 }}. {{ article.title }}</h1>
+            <p class="text-muted">Research Paper #{{ 1024 + i }} | Published 2026</p>
+            <img [src]="article.image" [alt]="article.title"
+                style="width: 100%; border-radius: 0.5rem; margin: 1rem 0;">
+            <p>{{ article.content }}</p>
+
+            <!-- Ad after image -->
+            <app-google-ad [adSlot]="adSlots.middle"></app-google-ad>
+
+            <p>
+                In the context of modern infrastructure, the integration of {{article.title}} represents a pivotal shift
+                in how data is processed and leveraged. Advanced analytics and real-time monitoring systems are now
+                capable of detecting minute fluctuations in performance, allowing for proactive adjustments that
+                significantly improve efficiency and reliability across the entire network.
+            </p>
+
+            <!-- Ad in middle of article text -->
+            <app-google-ad [adSlot]="adSlots.rectangle"></app-google-ad>
+
+            <p>
+                The socio-economic impact of these changes is equally profound. As industries adapt to these new
+                technological standards, we see a global shift in labor markets and resource allocation. Professional
+                training and education must evolve to keep pace, ensuring that the next generation of engineers and
+                designers are equipped with the specialized knowledge required to maintain and expand these complex
+                systems.
+            </p>
+        </article>
+
+        <!-- Ad between articles -->
+        <app-google-ad [adSlot]="adSlots.bottom"></app-google-ad>
+        <!-- Adding a second ad to ensure we hit that 200px approximate density -->
         <app-google-ad [adSlot]="adSlots.middle"></app-google-ad>
-        <p>
-            But it's not just about code generation. AI is helping in testing, security analysis, and even performance
-            optimization. Modern frameworks like Angular are also integrating AI-driven tools to enhance the developer
-            experience.
-        </p>
-    </article>
-
-    <article class="blog-card">
-        <h1>Why Clean Architecture Matters More Than Ever</h1>
-        <p>
-            As applications grow in complexity, the importance of a well-defined architecture cannot be overstated.
-            Clean Architecture allows us to decouple our business logic from technical details...
-        </p>
-        <img src="https://picsum.photos/800/450" alt="Architecture"
-            style="width: 100%; border-radius: 0.5rem; margin: 1rem 0;">
-        <app-google-ad [adSlot]="adSlots.middle"></app-google-ad>
-        <p>
-            By following these principles, teams can ensure their codebase remains maintainable and testable over the
-            long term, even as technologies change.
-        </p>
-    </article>
-
-    <app-google-ad [adSlot]="adSlots.bottom"></app-google-ad>
+    </ng-container>
 
     <!-- Continue button at the bottom -->
-    <div *ngIf="showContinueBtn" class="blog-card" style="text-align: center; border-color: var(--secondary);">
+    <div *ngIf="showContinueBtn" class="blog-card"
+        style="text-align: center; border-color: var(--secondary); margin-bottom: 100px;">
         <p>Verification successful! You can now proceed to the next step.</p>
         <button (click)="onContinueClick()" class="btn btn-secondary" style="width: 100%;" id="continue-btn-bottom">
             Click to Continue
         </button>
     </div>
+
+    <!-- Sticky Bottom Ad -->
+    <app-sticky-ad [adSlot]="adSlots.bottom"></app-sticky-ad>
+
+    <!-- Video Ad Popup (Shows after 20s) -->
+    <app-video-ad-popup [delay]="20000"></app-video-ad-popup>
+    <!-- Another Video Ad Popup (Shows after 45s) -->
+    <app-video-ad-popup [delay]="45000"></app-video-ad-popup>
 </div>
