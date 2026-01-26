@@ -1,0 +1,53 @@
+<div class="container">
+    <div class="notice">
+        <p>Click To any Image and wait 10sec on page (किसी भी इमेज पर क्लिक करें और 10 सेकंड प्रतीक्षा करें)</p>
+        <p>then back To skip timer</p>
+    </div>
+
+    <div class="blog-card" style="text-align: center;">
+        <button *ngIf="!timerStarted" (click)="onStartCount()" class="btn btn-primary" id="start-count-btn">
+            Start Verification Countdown
+        </button>
+        <h2 *ngIf="timerStarted && !showContinueBtn">Verification in progress... {{ timeLeft }}s</h2>
+        <h2 *ngIf="showContinueBtn">Verification Step 2 Complete!</h2>
+    </div>
+
+    <div class="ad-placeholder">Google Advertisement (Top)</div>
+
+    <article class="blog-card">
+        <h1>The Rise of Edge Computing in 2026</h1>
+        <p class="text-muted">Explore how latency is becoming a thing of the past.</p>
+        <img src="https://picsum.photos/800/410" alt="Edge Computing"
+            style="width: 100%; border-radius: 0.5rem; margin: 1rem 0;">
+        <p>
+            Edge computing is transforming how we process data. By bringing computation closer to the source, we can
+            achieve near-zero latency for critical applications...
+        </p>
+        <div class="ad-placeholder">Google Advertisement (In-Article)</div>
+        <p>
+            This is especially important for IoT, autonomous vehicles, and real-time gaming. In this article, we dive
+            deep into the latest edge networking protocols.
+        </p>
+    </article>
+
+    <div class="ad-placeholder">Google Advertisement (Middle)</div>
+
+    <article class="blog-card">
+        <h1>Web Performance: Beyond Core Web Vitals</h1>
+        <p>
+            Optimizing performance is an ongoing journey. Learn about the new metrics catching the eye of SEO
+            specialists and developers alike...
+        </p>
+        <img src="https://picsum.photos/800/420" alt="Performance"
+            style="width: 100%; border-radius: 0.5rem; margin: 1rem 0;">
+    </article>
+
+    <div class="ad-placeholder">Google Advertisement (Bottom)</div>
+
+    <div *ngIf="showContinueBtn" class="blog-card" style="text-align: center; border-color: var(--secondary);">
+        <p>You have waited for the required time. You can now move to the final step.</p>
+        <button (click)="onContinueClick()" class="btn btn-secondary" style="width: 100%;" id="continue-btn-step2">
+            Continue to Final Step
+        </button>
+    </div>
+</div>

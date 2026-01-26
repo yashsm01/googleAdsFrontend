@@ -1,0 +1,216 @@
+.telegram-bg {
+    background-color: #f0f2f5;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+}
+
+.telegram-container {
+    width: 100%;
+    max-width: 450px;
+    background: white;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+.telegram-header {
+    background-color: #ffffff;
+    padding: 1rem;
+    border-bottom: 1px solid #eee;
+}
+
+.bot-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.bot-avatar {
+    width: 45px;
+    height: 45px;
+    background: linear-gradient(135deg, #54a9eb, #438edb);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.bot-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.bot-name {
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.bot-status {
+    color: #2481cc;
+    font-size: 0.85rem;
+}
+
+.telegram-messages {
+    padding: 1.5rem;
+    background-image: url('https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png');
+    background-size: cover;
+    flex-grow: 1;
+    min-height: 200px;
+}
+
+.message {
+    margin-bottom: 1rem;
+    max-width: 80%;
+}
+
+.message.incoming .message-content {
+    background: white;
+    padding: 0.75rem 1rem;
+    border-radius: 12px 12px 12px 4px;
+    position: relative;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    font-size: 0.95rem;
+}
+
+.message-time {
+    display: block;
+    font-size: 0.7rem;
+    color: #999;
+    text-align: right;
+    margin-top: 4px;
+}
+
+.action-card {
+    padding: 1.5rem;
+    background: #ffffff;
+    text-align: center;
+}
+
+.timer-display {
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 0.5rem;
+    margin: 1rem 0;
+    color: #666;
+}
+
+.btn-get-link {
+    background-color: #2481cc;
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 2rem;
+    font-weight: bold;
+    width: 100%;
+    cursor: pointer;
+    transition: background 0.2s;
+    letter-spacing: 0.5px;
+}
+
+.btn-get-link:hover:not(:disabled) {
+    background-color: #1c71b0;
+}
+
+.btn-get-link:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.error-msg {
+    color: #d32f2f;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+}
+
+.google-ad-footer {
+    margin-top: 1.5rem;
+}
+
+.telegram-logo-circle {
+    width: 45px;
+    height: 45px;
+    background: #2481cc;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.success-bubble {
+    background: #e1f5fe !important;
+    color: #01579b !important;
+    border-left: 4px solid #03a9f4;
+}
+
+.error-bubble {
+    background: #ffebee !important;
+    color: #b71c1c !important;
+    border-left: 4px solid #ef5350;
+}
+
+.animate-in {
+    animation: slideIn 0.3s ease-out;
+}
+
+.error-animate {
+    animation: shake 0.4s ease-in-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes shake {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-5px);
+    }
+
+    75% {
+        transform: translateX(5px);
+    }
+}
+
+.loader-inline {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.loader-inline::after {
+    content: "";
+    width: 14px;
+    height: 14px;
+    border: 2px solid white;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}

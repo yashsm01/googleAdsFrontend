@@ -1,0 +1,58 @@
+<div class="container">
+    <!-- Notice at the top as requested -->
+    <div class="notice">
+        <p>Click To any Image and wait 10sec on page (किसी भी इमेज पर क्लिक करें और 10 सेकंड प्रतीक्षा करें)</p>
+        <p>then back To skip timer</p>
+    </div>
+
+    <div class="blog-card" style="text-align: center;">
+        <h2 *ngIf="!showVerifyBtn">Please wait {{ timeLeft }} seconds...</h2>
+        <button *ngIf="showVerifyBtn" (click)="onVerifyClick()" class="btn btn-primary" id="verify-btn-top">
+            Verify Now
+        </button>
+    </div>
+
+    <div class="ad-placeholder">Google Advertisement (Top)</div>
+
+    <article class="blog-card">
+        <h1>The Future of AI in Modern Software Development</h1>
+        <p class="text-muted">Posted on January 26, 2026 by TechWriter</p>
+        <img src="https://picsum.photos/800/400" alt="Tech Blog"
+            style="width: 100%; border-radius: 0.5rem; margin: 1rem 0;">
+        <p>
+            Artificial Intelligence is no longer just a buzzword; it's a fundamental part of the modern developer's
+            toolkit. From GitHub Copilot to advanced LLMs, the way we write code is changing forever...
+        </p>
+        <div class="ad-placeholder">Google Advertisement (In-Article)</div>
+        <p>
+            But it's not just about code generation. AI is helping in testing, security analysis, and even performance
+            optimization. Modern frameworks like Angular are also integrating AI-driven tools to enhance the developer
+            experience.
+        </p>
+    </article>
+
+    <article class="blog-card">
+        <h1>Why Clean Architecture Matters More Than Ever</h1>
+        <p>
+            As applications grow in complexity, the importance of a well-defined architecture cannot be overstated.
+            Clean Architecture allows us to decouple our business logic from technical details...
+        </p>
+        <img src="https://picsum.photos/800/450" alt="Architecture"
+            style="width: 100%; border-radius: 0.5rem; margin: 1rem 0;">
+        <div class="ad-placeholder">Google Advertisement (Middle)</div>
+        <p>
+            By following these principles, teams can ensure their codebase remains maintainable and testable over the
+            long term, even as technologies change.
+        </p>
+    </article>
+
+    <div class="ad-placeholder">Google Advertisement (Bottom)</div>
+
+    <!-- Continue button at the bottom -->
+    <div *ngIf="showContinueBtn" class="blog-card" style="text-align: center; border-color: var(--secondary);">
+        <p>Verification successful! You can now proceed to the next step.</p>
+        <button (click)="onContinueClick()" class="btn btn-secondary" style="width: 100%;" id="continue-btn-bottom">
+            Click to Continue
+        </button>
+    </div>
+</div>
