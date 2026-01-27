@@ -3,19 +3,19 @@ import { CommonModule } from '@angular/common';
 import { environment } from '../../../environments/environment';
 
 @Component({
-    selector: 'app-server-status',
-    standalone: true,
-    imports: [CommonModule],
-    template: `
+  selector: 'app-server-status',
+  standalone: true,
+  imports: [CommonModule],
+  template: `
     <div class="status-bar" [class.success]="isOnline" [class.error]="!isOnline && hasChecked" [class.checking]="!hasChecked"></div>
   `,
-    styles: [`
+  styles: [`
     .status-bar {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
-      height: 3px;
+      height: 1px;
       z-index: 99999;
       transition: all 0.5s ease;
     }
@@ -49,25 +49,25 @@ import { environment } from '../../../environments/environment';
   `]
 })
 export class ServerStatusComponent implements OnInit {
-    isOnline = false;
-    hasChecked = false;
+  isOnline = false;
+  hasChecked = false;
 
-    ngOnInit() {
-        this.pingServer();
-    }
+  ngOnInit() {
+    this.pingServer();
+  }
 
-    pingServer() {
-        const pingUrl = `${environment.apiUrl}/ping`;
+  pingServer() {
+    const pingUrl = `${environment.apiUrl}/ping`;
 
-        fetch(pingUrl)
-            .then(res => {
-                this.hasChecked = true;
-                this.isOnline = res.ok;
-            })
-            .catch(() => {
-                this.hasChecked = true;
-                this.isOnline = false;
-                console.log('Backend sleeping or unreachable');
-            });
-    }
+    fetch(pingUrl)
+      .then(res => {
+        this.hasChecked = true;
+        this.isOnline = res.ok;
+      })
+      .catch(() => {
+        this.hasChecked = true;
+        this.isOnline = false;
+        console.log('Backend sleeping or unreachable');
+      });
+  }
 }
