@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://barista-job-trends-in-india-2026.onrender.com/sitemap.xml
