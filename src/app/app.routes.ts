@@ -7,6 +7,7 @@ import { VerifyContainerComponent } from './components/verify-container/verify-c
 import { PrivacyComponent } from './components/legal/privacy.component';
 import { TermsComponent } from './components/legal/terms.component';
 import { ContactComponent } from './components/legal/contact.component';
+import { AboutComponent } from './components/legal/about.component';
 
 export const routes: Routes = [
     {
@@ -23,6 +24,7 @@ export const routes: Routes = [
     { path: 'privacy', component: PrivacyComponent },
     { path: 'terms', component: TermsComponent },
     { path: 'contact', component: ContactComponent },
+    { path: 'about', component: AboutComponent },
     { path: '', redirectTo: 'verify', pathMatch: 'full' },
     { path: '**', redirectTo: 'verify' }
 ];
