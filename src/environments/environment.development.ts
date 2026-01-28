@@ -1,6 +1,6 @@
 export const environment = {
     production: false,
-    apiUrl: 'http://localhost:3000',
+    apiUrl: 'https://telegrambot-grant-access.onrender.com',
     frontendUrl: 'http://192.168.0.199:4200',
     adSenseId: 'ca-pub-4448362911093439',
     adSlots: {

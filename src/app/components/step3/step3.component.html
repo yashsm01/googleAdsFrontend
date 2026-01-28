@@ -37,10 +37,17 @@
                     <h3 style="color: var(--primary-color);">👇 HANDSHAKE READY 👇</h3>
                     <p style="margin-bottom: 1.5rem; font-size: 0.9rem;">Click below to finalize your access to
                         high-value career alerts.</p>
-                    <button (click)="onGetLink()" class="btn btn-primary" style="width: 100%;" [disabled]="isVerifying">
+                    <button (click)="onGetLink()" class="btn btn-primary"
+                        style="width: 100%; border-radius: 12px; font-weight: 600;" [disabled]="isVerifying">
                         <span *ngIf="!isVerifying">ACCESS CAREER HUB</span>
                         <span *ngIf="isVerifying">Verifying Handshake...</span>
                     </button>
+
+                    <!-- Error Feedback -->
+                    <div *ngIf="error"
+                        style="margin-top: 1.5rem; padding: 1rem; background: #fee2e2; border-radius: 8px; color: #b91c1c; font-size: 0.9rem; border: 1px solid #fecaca;">
+                        {{ error }}
+                    </div>
                 </div>
 
                 <div *ngIf="isSuccess" class="animate-fade-in" style="text-align: center; color: #2ecc71;">
@@ -53,5 +60,16 @@
                 </div>
             </div>
         </div>
+
+        <!-- AdSense Safe Disclaimer -->
+        <footer style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid #eee; text-align: center;">
+            <p
+                style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; max-width: 800px; margin: 0 auto;">
+                <strong>Disclaimer:</strong> This page provides informational and analytical content about career
+                opportunities based on publicly available data and independent research. Job listings are shown for
+                reference only. We do not guarantee employment and encourage users to verify details directly with
+                employers.
+            </p>
+        </footer>
     </div>
 </div>

@@ -57,12 +57,13 @@ export class Step3Component implements OnInit, OnDestroy {
     console.log('[DEBUG] GET LINK clicked');
     this.error = null;
 
-    const code = this.verifyService.getVerificationCode();
-    console.log('[DEBUG] Code from service:', code);
+    const code = this.verifyService.getVerificationCode() || localStorage.getItem('verification_code');
+    console.log('[DEBUG] Code from service/local:', code);
 
     if (!code) {
       this.error = "ERROR: No verification code found! Please restart from Step 1. (त्रुटि: कोई कोड नहीं मिला!)";
       console.error('[DEBUG] Aborting: No code found in signal or localStorage');
+      this.isVerifying = false;
       return;
     }
 
@@ -72,15 +73,15 @@ export class Step3Component implements OnInit, OnDestroy {
     }
 
     this.isVerifying = true;
-    console.log('[DEBUG] isVerifying set to true. Calling API...');
+    console.log('[DEBUG] isVerifying set to true. Calling API:', this.verifyService['apiUrl']);
 
     this.verifyService.grantAccess(code).subscribe({
       next: (res) => {
         console.log('[DEBUG] API Response Received:', res);
-        if (res.status === 'success' && res.data) {
+        if (res.status === 'success' || res.ok) {
           this.isSuccess = true;
-          this.verifyService.setBotData(res.data);
-          setTimeout(() => window.location.href = '/verify/step4', 1000);
+          if (res.data) this.verifyService.setBotData(res.data);
+          setTimeout(() => window.location.href = '/verify/step4', 1500);
         } else {
           this.error = res.message || "Authorization failed. Please try again.";
           this.isVerifying = false;
@@ -89,11 +90,10 @@ export class Step3Component implements OnInit, OnDestroy {
       error: (err) => {
         console.error('[DEBUG] API Call Failed:', err);
         this.isVerifying = false;
-
         if (err.status === 0) {
-          this.error = "Network Error: Possible AdBlocker or Backend Offline. (नेटवर्क त्रुटि: कृपया एडब्लॉकर चेक करें या पुनः प्रयास करें।)";
+          this.error = "Handshake Error: Network connectivity issue or Backend Offline.";
         } else {
-          this.error = `API Error (${err.status}): ${err.message}`;
+          this.error = `Handshake Error (${err.status}): ${err.message || 'Server rejected request'}`;
         }
       }
     });
