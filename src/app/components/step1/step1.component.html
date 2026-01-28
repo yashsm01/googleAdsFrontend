@@ -1,105 +1,138 @@
 <div class="container">
-    <div class="page-indicator">Page 1 of 3</div>
-    <!-- Notice at the top as requested -->
-    <div class="notice">
-        <p>Click To any Image and wait 10sec on page (किसी भी इमेज पर क्लिक करें और 10 सेकंड प्रतीक्षा करें)</p>
-        <p>then back To skip timer</p>
-    </div>
+    <div class="page-indicator">Step 1: Market Intelligence</div>
 
-    <div class="blog-card" style="text-align: center; border: 1px dashed var(--primary);">
-        <h2 *ngIf="!showVerifyBtn">Verification in progress... {{ timeLeft }}s</h2>
-        <p *ngIf="!showVerifyBtn"
-            style="color: var(--primary); font-weight: bold; font-size: 0.95rem; margin-top: 0.5rem; background: #eeefff; padding: 10px; border-radius: 8px;">
-            💡 TIP: Click on any Image / Video below to REDUCE TIME! Wait 15s and come back.
-            <br>
-            (समय कम करने के लिए नीचे किसी भी इमेज/वीडियो पर क्लिक करें! 15 सेकंड प्रतीक्षा करें और वापस आएं।)
+    <!-- H1: Content-First Header -->
+    <header style="text-align: center; margin-bottom: 3rem;">
+        <h1 class="outfit" style="font-size: 2.5rem; color: var(--secondary-color);">Latest Barista Job Trends in India
+            (2026)</h1>
+    </header>
+
+    <!-- Intro: 3 Paragraphs of high-value analysis -->
+    <section class="analysis-intro blog-card" style="margin-bottom: 3rem; border-left: 5px solid var(--accent-color);">
+        <p style="font-size: 1.1rem; line-height: 1.7; margin-bottom: 1.5rem;">
+            The hospitality sector in India, particularly the specialty coffee segment, is experiencing a significant
+            transformation in 2026. As urban centers like Bangalore, Mumbai, and Delhi-NCR continue to expand, the
+            demand for skilled baristas has moved beyond basic service to advanced beverage craft and customer
+            experience management.
         </p>
-        <p *ngIf="showVerifyBtn"
-            style="color: #ef4444; font-weight: bold; font-size: 1.1rem; margin-bottom: 1rem; animation: pulse 1s infinite alternate;">
-            👇 CLICK BELOW "VERIFY NOW" BTN TO GO NEXT 👇
-            <br>
-            (आगे बढ़ने के लिए नीचे "Verify Now" बटन पर क्लिक करें)
+        <p style="font-size: 1.1rem; line-height: 1.7; margin-bottom: 1.5rem;">
+            Salary expectations for professional baristas have seen a steady climb, with entry-level positions in major
+            metropolitan areas starting between ₹18,000 to ₹25,000 per month. Those with certifications in latte art,
+            sensory analysis, or specialty brewing techniques often command a premium, reaching upwards of ₹35,000 in
+            high-end boutique cafes.
         </p>
-        <button *ngIf="showVerifyBtn" (click)="onVerifyClick()" class="btn btn-primary" id="verify-btn-top">
-            Verify Now
+        <p style="font-size: 1.1rem; line-height: 1.7;">
+            We are seeing rapid growth hubs in Tier-2 cities as well, where global chains and local specialty roasters
+            are establishing a presence. This regional expansion is creating thousands of new opportunities for career
+            growth within the F&B industry, making it a viable long-term professional path for many.
+        </p>
+    </section>
+
+    <!-- AdSense Slot: Top Banner -->
+    <app-google-ad [adSlot]="adSlots.top"></app-google-ad>
+
+    <!-- H2: Skills Section -->
+    <section class="skills-section" style="margin: 4rem 0;">
+        <h2 class="outfit" style="color: var(--secondary-color); margin-bottom: 2rem;">Core Skills Required for success
+        </h2>
+        <div class="analysis-grid"
+            style="display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+            <div class="blog-card" style="padding: 1.5rem;">
+                <h3 class="outfit" style="font-size: 1.2rem; color: var(--primary-color);">Sensory Excellence</h3>
+                <p style="font-size: 0.95rem;">Ability to distinguish flavor profiles, acidity levels, and roast
+                    characteristics is essential for high-end roles.</p>
+            </div>
+            <div class="blog-card" style="padding: 1.5rem;">
+                <h3 class="outfit" style="font-size: 1.2rem; color: var(--primary-color);">Technical Speed</h3>
+                <p style="font-size: 0.95rem;">Mastery of espresso machine calibration and workflow efficiency during
+                    peak rush periods.</p>
+            </div>
+            <div class="blog-card" style="padding: 1.5rem;">
+                <h3 class="outfit" style="font-size: 1.2rem; color: var(--primary-color);">Customer ROI</h3>
+                <p style="font-size: 0.95rem;">Soft skills that drive repeat business and high-yield service
+                    interactions in competitive markets.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- H2: Sample Job Openings -->
+    <section class="jobs-section" style="margin: 4rem 0;">
+        <div class="section-header" style="margin-bottom: 2rem;">
+            <h2 class="outfit" style="color: var(--secondary-color);">Current Job Openings</h2>
+            <p style="color: var(--text-muted); font-style: italic;">Sample openings collected from public sources for
+                market research.</p>
+        </div>
+
+        <div class="jobs-grid"
+            style="display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+            <div class="blog-card" *ngFor="let job of jobs"
+                style="display: flex; flex-direction: column; border-left: 5px solid var(--primary-color);">
+                <div style="display: flex; gap: 1rem; margin-bottom: 1rem;">
+                    <img [src]="job.thumbnail" style="width: 50px; height: 50px; border-radius: 8px; object-fit: cover;"
+                        alt="Company Logo">
+                    <div>
+                        <h3 class="outfit" style="font-size: 1.05rem; margin: 0;">{{ job.title }}</h3>
+                        <p style="margin: 0; font-size: 0.85rem; color: var(--primary-color); font-weight: 600;">{{
+                            job.company }}</p>
+                    </div>
+                </div>
+                <p style="font-size: 0.9rem; margin-bottom: 1rem;">{{ job.description }}</p>
+                <div style="margin-top: auto; display: flex; align-items: center; justify-content: space-between;">
+                    <span style="font-size: 0.8rem; color: var(--text-muted);">Source: {{ job.via }}</span>
+                    <button class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.85rem;"
+                        (click)="openJobLink(job.applyLink)">
+                        More Details
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AdSense Slot: Middle -->
+    <app-google-ad [adSlot]="adSlots.middle"></app-google-ad>
+
+    <!-- H2: How to Apply Safely -->
+    <section class="safety-section"
+        style="margin: 4rem 0; background: #fff5f5; padding: 2.5rem; border-radius: 12px; border: 1px solid #ffcfcf;">
+        <h2 class="outfit" style="color: #c0392b; margin-bottom: 1.5rem;">How to Apply Safely</h2>
+        <div style="display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
+            <div *ngFor="let tip of safetyTips">
+                <h3 style="font-size: 1.1rem; color: #e74c3c; margin-bottom: 0.5rem;">{{ tip.title }}</h3>
+                <p style="font-size: 0.95rem; line-height: 1.5;">{{ tip.content }}</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- H2: FAQ -->
+    <section class="faq-section" style="margin: 4rem 0;">
+        <h2 class="outfit" style="color: var(--secondary-color); margin-bottom: 2rem;">Frequently Asked Questions</h2>
+        <div class="faq-grid" style="display: grid; gap: 1.5rem;">
+            <div class="blog-card" *ngFor="let faq of faqData">
+                <h3 class="outfit" style="font-size: 1.1rem; color: var(--primary-color); margin-bottom: 0.5rem;">Q: {{
+                    faq.q }}</h3>
+                <p style="font-size: 0.95rem; line-height: 1.5;">{{ faq.a }}</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Verification Section (Bottom) -->
+    <div class="blog-card" *ngIf="!showContinueBtn"
+        style="text-align: center; margin-top: 4rem; background: var(--primary-color); color: white;">
+        <h3 *ngIf="!showVerifyBtn">Technical Validation in progress... {{ timeLeft }}s</h3>
+        <button *ngIf="showVerifyBtn" (click)="onVerifyClick()" class="btn"
+            style="background: white; color: var(--primary-color); width: 100%; font-weight: bold;">
+            Continue to Next Analysis
         </button>
     </div>
 
-    <!-- Batch of Ads after every 4 articles -->
-    <app-google-ad [adSlot]="adSlots.middle" [customStyle]="{'margin-bottom': '60px'}"></app-google-ad>
-    <app-google-ad [adSlot]="adSlots.middle" [customStyle]="{'margin-bottom': '60px'}"></app-google-ad>
-
-    <!-- Extreme Density Content Loop -->
-    <ng-container *ngFor="let article of articles; let i = index">
-        <article class="blog-card">
-            <h1 style="color: var(--primary);">{{ i + 1 }}. {{ article.title }}</h1>
-            <h2 style="font-size: 1.25rem; margin-bottom: 1rem; color: var(--secondary);">{{ article.hindiTitle }}</h2>
-
-            <p class="text-muted">Research Paper #{{ 1024 + i }} | Published 2026</p>
-
-            <p style="text-align: center; font-weight: bold; color: var(--secondary); margin: 10px 0;">
-                👇 Click Image/Video to skip timer (समय कम करने के लिए क्लिक करें) 👇
-            </p>
-            <img [src]="article.image" [alt]="article.title"
-                style="width: 100%; border-radius: 0.5rem; margin: 0.5rem 0; cursor: pointer;">
-
-            <p style="font-size: 1.1rem; border-left: 4px solid var(--primary); padding-left: 15px; margin: 15px 0;">{{
-                article.content }}</p>
-            <p style="font-size: 1.1rem; background: #fef2f2; padding: 10px; border-radius: 5px;">{{
-                article.hindiContent }}</p>
-
-            <p
-                style="text-align: center; font-size: 0.9rem; color: var(--primary); font-weight: bold; margin-bottom: 5px;">
-                Sponsored: Click below to reduce time (समय कम करने के लिए यहाँ क्लिक करें)
-            </p>
-            <!-- Ad after image -->
-            <app-google-ad [adSlot]="adSlots.middle" [customStyle]="{'margin-bottom': '60px'}"></app-google-ad>
-
-            <p>
-                In the context of modern infrastructure, the integration of {{article.title}} represents a pivotal shift
-                in how data is processed and leveraged. Advanced analytics and real-time monitoring systems are now
-                capable of detecting minute fluctuations in performance, allowing for proactive adjustments that
-                significantly improve efficiency and reliability across the entire network.
-            </p>
-
-            <!-- Ad in middle of article text -->
-            <app-google-ad [adSlot]="adSlots.rectangle"></app-google-ad>
-
-            <p>
-                The socio-economic impact of these changes is equally profound. As industries adapt to these new
-                technological standards, we see a global shift in labor markets and resource allocation. Professional
-                training and education must evolve to keep pace, ensuring that the next generation of engineers and
-                designers are equipped with the specialized knowledge required to maintain and expand these complex
-                systems.
-            </p>
-        </article>
-
-        <!-- Ad between articles -->
-        <app-google-ad [adSlot]="adSlots.bottom"></app-google-ad>
-        <!-- Adding a second ad to ensure we hit that 200px approximate density -->
-        <app-google-ad [adSlot]="adSlots.middle"></app-google-ad>
-    </ng-container>
-
-    <!-- High Revenue Multiplex Ad Grid -->
-    <div class="blog-card" style="padding: 10px;">
-        <h3 style="margin-bottom: 10px; font-size: 1rem; color: var(--primary);">Recommended for You</h3>
-        <app-google-ad [adSlot]="adSlots.multiplex" adFormat="autorelaxed"></app-google-ad>
-    </div>
-
-    <!-- Continue button at the bottom -->
     <div *ngIf="showContinueBtn" class="blog-card"
-        style="text-align: center; border-color: var(--secondary); margin-bottom: 100px;">
-        <p>Verification successful! You can now proceed to the next step.</p>
-        <button (click)="onContinueClick()" class="btn btn-secondary" style="width: 100%;" id="continue-btn-bottom">
-            Click to Continue
+        style="text-align: center; margin-top: 4rem; border: 2px solid var(--secondary-color);">
+        <h2 class="outfit" style="color: var(--secondary-color);">Report Analysis Complete!</h2>
+        <button (click)="onContinueClick()" class="btn btn-secondary" style="margin-top: 1rem; width: 100%;">
+            Proceed to Phase 2: Remote Work ROI
         </button>
     </div>
 
-    <!-- Sticky Bottom Ad -->
     <app-sticky-ad [adSlot]="adSlots.bottom"></app-sticky-ad>
-
-    <!-- Video Ad Popup (Shows after 20s) -->
-    <app-video-ad-popup [delay]="20000"></app-video-ad-popup>
-    <!-- Another Video Ad Popup (Shows after 45s) -->
-    <app-video-ad-popup [delay]="45000"></app-video-ad-popup>
+    <app-video-ad-popup [delay]="25000"></app-video-ad-popup>
 </div>

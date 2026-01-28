@@ -1,7 +1,7 @@
 export const environment = {
     production: true,
-    apiUrl: 'https://telegrambot-grant-access.onrender.com', // Change to your production backend
-    frontendUrl: 'https://talagram-movie-google-ads-bot.onrender.com', // Change to your production frontend
+    apiUrl: 'https://telegrambot-grant-access.onrender.com',
+    frontendUrl: 'https://talagram-movie-google-ads-bot.onrender.com',
     adSenseId: 'ca-pub-4448362911093439',
     adSlots: {
         top: '0000000001',

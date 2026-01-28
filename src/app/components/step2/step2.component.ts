@@ -30,14 +30,14 @@ export class Step2Component implements OnInit, OnDestroy {
 
   generateMassiveContent() {
     const topics = [
-      "Artificial Intelligence Ethics", "Next-Gen Cloud Infrastructure", "Cyber Security in 2026",
-      "The Rise of Decentralized AI", "Quantum Networking Principles", "Advanced Data Privacy Laws",
-      "Edge Computing Use Cases", "Biometric Authentication Trends", "Sustainable Software Engineering",
-      "The Impact of 6G Technology", "Digital Workspace Transformation", "API Security Best Practices",
-      "Microservices Architecture Evolution", "The Future of Low-Code Platforms", "Blockchain for Supply Chain",
-      "Autonomous Systems Management", "Human-Augmented Intelligence", "Predictive Analytics in Retail",
-      "Smart Manufacturing Frameworks", "The Role of AR in Engineering", "Natural Language Processing Trends",
-      "Serverless Computing Performance", "Data Literacy for the Masses", "The Evolution of DevOps Culture"
+      "Remote Work ROI for Software Engineers", "Digital Nomad EPC Growth in 2026", "Scaling Career Performance Authority (CPA)",
+      "High-Yield Remote Project Management", "The Economics of Digital Nomadism", "Career ROI for Remote Product Leads",
+      "EPC Trends in Blockchain Careers", "Cybersecurity ROI for Remote Teams", "Sustainability in Remote Work ROI",
+      "6G Connectivity and Remote Career Growth", "ROI of Virtual Workspaces in 2026", "Security Best Practices for Remote CPA",
+      "Microservices ROI for Remote Developers", "The ROI of Low-Code for Career Growth", "Supply Chain Career ROI in 2026",
+      "Management ROI for Autonomous Teams", "Human-Augmented Career Analytics", "Predictive ROI in Remote Sales",
+      "Industrial ROI in Remote Manufacturing", "The ROI of AR in Digital Training", "NLP Career Growth and EPC Trends",
+      "Serverless ROI for Remote Infrastructure", "Data Literacy ROI for Professionals", "DevOps ROI in the Remote Economy"
     ];
 
     for (let i = 0; i < topics.length; i++) {
@@ -45,8 +45,8 @@ export class Step2Component implements OnInit, OnDestroy {
         id: i,
         title: topics[i],
         hindiTitle: this.getHindiTitle(topics[i]),
-        content: `As we analyze the trajectory of ${topics[i]}, it becomes evident that the industry is at a critical crossroads. The convergence of multiple technological streams is creating new possibilities.`,
-        hindiContent: `जैसे ही हम ${topics[i]} की प्रगति का विश्लेषण करते हैं, यह स्पष्ट हो जाता है कि उद्योग एक महत्वपूर्ण मोड़ पर है। कई तकनीकी धाराओं का संगम नई संभावनाएं पैदा कर रहा है।`,
+        content: `As we analyze the trajectory of ${topics[i]}, it becomes evident that the industry is at a critical crossroads. Technical career ROI is projected to surge by 35% in current market conditions.`,
+        hindiContent: `जैसे ही हम ${topics[i]} की प्रगति का विश्लेषण करते हैं, यह स्पष्ट हो जाता है कि उद्योग एक महत्वपूर्ण मोड़ पर है। वर्तमान बाजार स्थितियों में तकनीकी कैरियर आरओआई (ROI) में 35% की वृद्धि होने का अनुमान है।`,
         image: `https://picsum.photos/800/400?random=${i + 50}`
       });
     }
@@ -54,30 +54,30 @@ export class Step2Component implements OnInit, OnDestroy {
 
   getHindiTitle(topic: string): string {
     const hindiMap: any = {
-      "Artificial Intelligence Ethics": "आर्टिफिशियल इंटेलिजेंस नैतिकता",
-      "Next-Gen Cloud Infrastructure": "अगली पीढ़ी का क्लाउड इंफ्रास्ट्रक्चर",
-      "Cyber Security in 2026": "2026 में साइबर सुरक्षा",
-      "The Rise of Decentralized AI": "विकेंद्रीकृत एआई का उदय",
-      "Quantum Networking Principles": "क्वांटम नेटवर्किंग के सिद्धांत",
-      "Advanced Data Privacy Laws": "उन्नत डेटा गोपनीयता कानून",
-      "Edge Computing Use Cases": "एज कंप्यूटिंग के उपयोग के मामले",
-      "Biometric Authentication Trends": "बायोमेट्रिक प्रमाणीकरण रुझान",
-      "Sustainable Software Engineering": "सतत सॉफ्टवेयर इंजीनियरिंग",
-      "The Impact of 6G Technology": "6G तकनीक का प्रभाव",
-      "Digital Workspace Transformation": "डिजिटल कार्यक्षेत्र परिवर्तन",
-      "API Security Best Practices": "एपीआई सुरक्षा सर्वोत्तम अभ्यास",
-      "Microservices Architecture Evolution": "माइक्रोसर्विसेज आर्किटेक्चर का विकास",
-      "The Future of Low-Code Platforms": "लो-कोड प्लेटफॉर्म का भविष्य",
-      "Blockchain for Supply Chain": "सप्लाई चेन के लिए ब्लॉकचेन",
-      "Autonomous Systems Management": "स्वायत्त प्रणालियों का प्रबंधन",
-      "Human-Augmented Intelligence": "मानव-संवर्धित बुद्धिमत्ता",
-      "Predictive Analytics in Retail": "रिटेल में भविष्य कहनेवाला विश्लेषण",
-      "Smart Manufacturing Frameworks": "स्मार्ट विनिर्माण ढांचे",
-      "The Role of AR in Engineering": "इंजीनियरिंग में एआर की भूमिका",
-      "Natural Language Processing Trends": "नेचुरल लैंग्वेज प्रोसेसिंग रुझान",
-      "Serverless Computing Performance": "सर्वरलेस कंप्यूटिंग प्रदर्शन",
-      "Data Literacy for the Masses": "जनता के लिए डेटा साक्षरता",
-      "The Evolution of DevOps Culture": "डेवऑप्स (DevOps) संस्कृति का विकास"
+      "Remote Work ROI for Software Engineers": "सॉफ्टवेयर इंजीनियरों के लिए रिमोट वर्क आरओआई",
+      "Digital Nomad EPC Growth in 2026": "2026 में डिजिटल नोमैड ईपीसी वृद्धि",
+      "Scaling Career Performance Authority (CPA)": "कैरियर प्रदर्शन अथॉरिटी (CPA) का विस्तार",
+      "High-Yield Remote Project Management": "उच्च-उपज रिमोट प्रोजेक्ट मैनेजमेंट",
+      "The Economics of Digital Nomadism": "डिजिटल नोमैडिज़्म का अर्थशास्त्र",
+      "Career ROI for Remote Product Leads": "रिमोट प्रोडक्ट लीड्स के लिए कैरियर आरओआई",
+      "EPC Trends in Blockchain Careers": "ब्लॉकचेन व्यवसायों में ईपीसी रुझान",
+      "Cybersecurity ROI for Remote Teams": "रिमोट टीमों के लिए साइबर सुरक्षा आरओआई",
+      "Sustainability in Remote Work ROI": "रिमोट वर्क आरओआई में स्थिरता",
+      "6G Connectivity and Remote Career Growth": "6G कनेक्टिविटी और रिमोट कैरियर ग्रोथ",
+      "ROI of Virtual Workspaces in 2026": "2026 में वर्चुअल वर्कस्पेस का आरओआई",
+      "Security Best Practices for Remote CPA": "रिमोट सीपीए के लिए सुरक्षा सर्वोत्तम अभ्यास",
+      "Microservices ROI for Remote Developers": "रिमोट डेवलपर्स के लिए माइक्रोसर्विसेज आरओआई",
+      "The ROI of Low-Code for Career Growth": "कैरियर ग्रोथ के लिए लो-कोड का आरओआई",
+      "Supply Chain Career ROI in 2026": "2026 में सप्लाई चेन कैरियर आरओआई",
+      "Management ROI for Autonomous Teams": "स्वायत्त टीमों के लिए प्रबंधन आरओआई",
+      "Human-Augmented Career Analytics": "मानव-संवर्धित कैरियर विश्लेषण",
+      "Predictive ROI in Remote Sales": "रिमोट सेल्स में प्रेडिक्टिव आरओआई",
+      "Industrial ROI in Remote Manufacturing": "रिमोट मैन्युफैक्चरिंग में औद्योगिक आरओआई",
+      "The ROI of AR in Digital Training": "डिजिटल प्रशिक्षण में एआर (AR) का आरओआई",
+      "NLP Career Growth and EPC Trends": "एनएलपी कैरियर ग्रोथ और ईपीसी रुझान",
+      "Serverless ROI for Remote Infrastructure": "रिमोट इंफ्रास्ट्रक्चर के लिए सर्वरलेस आरओआई",
+      "Data Literacy ROI for Professionals": "पेशेवरों के लिए डेटा साक्षरता आरओआई",
+      "DevOps ROI in the Remote Economy": "रिमोट इकोनॉमी में डेवऑप्स (DevOps) आरओआई"
     };
     return hindiMap[topic] || topic;
   }

@@ -4,6 +4,9 @@ import { Step2Component } from './components/step2/step2.component';
 import { Step3Component } from './components/step3/step3.component';
 import { Step4Component } from './components/step4/step4.component';
 import { VerifyContainerComponent } from './components/verify-container/verify-container.component';
+import { PrivacyComponent } from './components/legal/privacy.component';
+import { TermsComponent } from './components/legal/terms.component';
+import { ContactComponent } from './components/legal/contact.component';
 
 export const routes: Routes = [
     {
@@ -17,6 +20,9 @@ export const routes: Routes = [
             { path: '', redirectTo: 'step1', pathMatch: 'full' }
         ]
     },
+    { path: 'privacy', component: PrivacyComponent },
+    { path: 'terms', component: TermsComponent },
+    { path: 'contact', component: ContactComponent },
     { path: '', redirectTo: 'verify', pathMatch: 'full' },
     { path: '**', redirectTo: 'verify' }
 ];
