@@ -15,7 +15,7 @@ import { environment } from '../../../environments/environment';
   styleUrl: './step2.component.css'
 })
 export class Step2Component implements OnInit, OnDestroy {
-  adZones = environment.propellerAds;
+  adZones = environment.adsterra;
   timeLeft = 15;
   timerStarted = false;
   showContinueBtn = false;

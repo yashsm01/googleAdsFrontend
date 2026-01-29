@@ -8,7 +8,7 @@ import { environment } from '../../../environments/environment';
   imports: [CommonModule],
   template: `
     <div class="ad-container" [ngStyle]="customStyle">
-      <div [id]="'propeller-zone-' + zoneId"></div>
+      <div [id]="'adsterra-key-' + adKey"></div>
     </div>
   `,
   styles: [`
@@ -22,7 +22,7 @@ import { environment } from '../../../environments/environment';
   `]
 })
 export class PropellerAdComponent implements AfterViewInit {
-  @Input() zoneId: string = environment.propellerAds.banner;
+  @Input() adKey: string = environment.adsterra.banner;
   @Input() customStyle: any = {};
 
   ngAfterViewInit() {
@@ -31,19 +31,25 @@ export class PropellerAdComponent implements AfterViewInit {
 
   private injectAdScript() {
     try {
-      const script = document.createElement('script');
-      script.setAttribute('data-cfasync', 'false');
-      script.async = true;
-      // Note: This is a placeholder Monetag script format. 
-      // Replace with your actual script src from the Monetag dashboard.
-      script.src = `//go.mobisla.com/notice.php?p=${this.zoneId}&interactive=1&pushads=1`;
+      const container = document.getElementById('adsterra-key-' + this.adKey);
+      if (!container) return;
 
-      const container = document.getElementById('propeller-zone-' + this.zoneId);
-      if (container) {
-        container.appendChild(script);
-      }
+      // Adsterra requires a global atOptions object
+      (window as any).atOptions = {
+        'key': this.adKey,
+        'format': 'iframe',
+        'height': 90,
+        'width': 728,
+        'params': {}
+      };
+
+      const script = document.createElement('script');
+      script.type = 'text/javascript';
+      script.src = `//www.highperformanceformat.com/${this.adKey}/invoke.js`;
+
+      container.appendChild(script);
     } catch (e) {
-      console.error('PropellerAds initialization error', e);
+      console.error('Adsterra initialization error', e);
     }
   }
 }

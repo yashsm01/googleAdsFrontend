@@ -24,7 +24,7 @@
         </div>
     </div>
 
-    <app-propeller-ad [zoneId]="adZones.banner"></app-propeller-ad>
+    <app-propeller-ad [adKey]="adZones.banner"></app-propeller-ad>
 
     <!-- Content Sections -->
     <section class="analysis-grid">
@@ -37,7 +37,7 @@
                 <p style="font-size: 1.1rem; line-height: 1.8;">{{ article.content }}</p>
             </div>
 
-            <app-propeller-ad [zoneId]="adZones.banner"></app-propeller-ad>
+            <app-propeller-ad [adKey]="adZones.banner"></app-propeller-ad>
 
             <p style="margin-top: 1.5rem;">
                 Statistical evidence from <a href="https://www.statista.com" target="_blank">global datasets</a>
@@ -50,7 +50,7 @@
     <!-- Multiplex Ad -->
     <div class="blog-card" style="border-top: 4px solid var(--primary-color);">
         <h3 class="outfit">Related Career ROI Deep-Dives</h3>
-        <app-propeller-ad [zoneId]="adZones.banner"></app-propeller-ad>
+        <app-propeller-ad [adKey]="adZones.banner"></app-propeller-ad>
     </div>
 
     <div *ngIf="showContinueBtn" class="blog-card"
@@ -63,7 +63,7 @@
         </button>
     </div>
 
-    <app-sticky-ad [zoneId]="adZones.banner"></app-sticky-ad>
+    <app-sticky-ad [adKey]="adZones.banner"></app-sticky-ad>
     <app-video-ad-popup [delay]="20000"></app-video-ad-popup>
 
     <!-- AdSense Safe Disclaimer -->

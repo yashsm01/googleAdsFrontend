@@ -2,9 +2,8 @@ export const environment = {
     production: true,
     apiUrl: 'https://telegrambot-grant-access.onrender.com',
     frontendUrl: 'https://talagram-movie-google-ads-bot.onrender.com',
-    propellerAds: {
-        popunder: '0000000', // Replace with PropellerAds Popunder Zone ID
-        banner: '0000001',   // Replace with PropellerAds Banner Zone ID
-        interstitial: '0000002' // Replace with PropellerAds Interstitial Zone ID
+    adsterra: {
+        popunder: '44f366306f8da12ea63cb18e7609ec3a', // From index.html
+        banner: '0000001'   // Replace with Adsterra Banner Key
     }
 };

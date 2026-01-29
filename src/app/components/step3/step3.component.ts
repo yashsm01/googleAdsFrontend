@@ -13,7 +13,7 @@ import { environment } from '../../../environments/environment';
   styleUrl: './step3.component.css'
 })
 export class Step3Component implements OnInit, OnDestroy {
-  adZones = environment.propellerAds;
+  adZones = environment.adsterra;
   timeLeft = 8;
   showGetLinkBtn = false;
   isVerifying = false;

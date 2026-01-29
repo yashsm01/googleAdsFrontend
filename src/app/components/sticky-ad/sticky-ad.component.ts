@@ -16,7 +16,7 @@ import { environment as env } from '../../../environments/environment';
             <line x1="6" y1="6" x2="18" y2="18"></line>
           </svg>
         </button>
-        <app-propeller-ad [zoneId]="zoneId"
+        <app-propeller-ad [adKey]="adKey"
             [customStyle]="{'margin': '0', 'min-height': '60px'}"></app-propeller-ad>
       </div>
     </div>
@@ -77,7 +77,7 @@ import { environment as env } from '../../../environments/environment';
   `]
 })
 export class StickyAdComponent implements OnInit {
-  @Input() zoneId: string = '';
+  @Input() adKey: string = '';
   isVisible = false;
 
   ngOnInit() {

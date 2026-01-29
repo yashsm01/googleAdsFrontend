@@ -12,7 +12,7 @@ import { environment } from '../../../environments/environment';
   styleUrl: './step4.component.css'
 })
 export class Step4Component implements OnInit, OnDestroy {
-  adZones = environment.propellerAds;
+  adZones = environment.adsterra;
   botData: any;
   timeLeft = 5;
   interval: any;
