@@ -15,14 +15,14 @@ import { environment } from '../../../environments/environment';
         </div>
       </div>
       <div class="ad-container" [class.hidden]="isLoading || isError">
-        <div [id]="format === 'native' ? 'container-' + adKey : 'adsterra-key-' + adKey"></div>
+        <div [id]="containerId"></div>
       </div>
     </div>
   `,
   styles: [`
     .ad-outer-wrapper {
-      margin: 2rem 0;
-      min-height: 100px;
+      margin: 1rem 0;
+      min-height: 50px;
       width: 100%;
       display: flex;
       flex-direction: column;
@@ -96,6 +96,12 @@ export class AdsterraAdComponent implements AfterViewInit {
 
   isLoading = true;
   isError = false;
+  // Generate a unique ID for this specific component instance
+  uniqueId = Math.random().toString(36).substring(2, 11);
+
+  get containerId(): string {
+    return `ad-${this.format}-${this.adKey}-${this.uniqueId}`;
+  }
 
   ngAfterViewInit() {
     this.injectAdScript();
@@ -108,18 +114,17 @@ export class AdsterraAdComponent implements AfterViewInit {
 
   private injectAdScript() {
     try {
-      const containerId = this.format === 'native'
-        ? 'container-' + this.adKey
-        : 'adsterra-key-' + this.adKey;
-
-      const container = document.getElementById(containerId);
+      const container = document.getElementById(this.containerId);
       if (!container) {
-        this.isError = true;
-        this.isLoading = false;
+        this.handleError();
         return;
       }
 
       if (this.format === 'banner') {
+        const script = document.createElement('script');
+        script.type = 'text/javascript';
+        // We use a temporary global options object for the banner
+        // In a real multi-ad scenario, this might need more isolation
         (window as any).atOptions = {
           'key': this.adKey,
           'format': 'iframe',
@@ -127,8 +132,6 @@ export class AdsterraAdComponent implements AfterViewInit {
           'width': 728,
           'params': {}
         };
-        const script = document.createElement('script');
-        script.type = 'text/javascript';
         script.src = `//www.highperformanceformat.com/${this.adKey}/invoke.js`;
         script.onload = () => { this.isLoading = false; };
         script.onerror = () => { this.handleError(); };
@@ -155,14 +158,18 @@ export class AdsterraAdComponent implements AfterViewInit {
 
   private checkLoadState() {
     if (this.isLoading) {
-      const containerId = this.format === 'native'
-        ? 'container-' + this.adKey
-        : 'adsterra-key-' + this.adKey;
-      const container = document.getElementById(containerId);
+      const container = document.getElementById(this.containerId);
 
-      // If container is still empty after 5s, it's likely blocked by AdBlock
-      if (container && container.innerHTML.trim() === '') {
-        this.handleError();
+      // If container is still empty after 5s, it's likely blocked by AdBlock or fail
+      // We check for both empty innerHTML or just the script tag being the only child
+      if (container && (container.innerHTML.trim() === '' || container.children.length === 1 && container.firstChild?.nodeName === 'SCRIPT')) {
+        // Note: Some ads might take longer, but 5s is a reasonable cutoff for shimmer removal
+        if (container.innerHTML.trim() === '') {
+          this.handleError();
+        } else {
+          // If there is content but still loading, don't necessarily error out
+          // but let's assume it's loading if we see progress
+        }
       }
     }
   }

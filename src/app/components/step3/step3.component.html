@@ -1,24 +1,19 @@
-<div class="progress-container"
-    style="background: white; border-bottom: 2px solid #f0f0f0; padding: 1rem; position: sticky; top: 0; z-index: 1000; display: flex; align-items: center; justify-content: center; gap: 1rem;">
-    <div style="font-size: 0.9rem; font-weight: 600; color: var(--text-muted); white-space: nowrap;">Verification: 75%
+<div class="progress-wrap">
+    <div class="progress-info">Verification: 75%</div>
+    <div class="progress-bar-bg">
+        <div class="progress-bar-fill" style="width: 75%;"></div>
     </div>
-    <div style="flex: 1; height: 10px; background: #eee; border-radius: 5px; overflow: hidden; max-width: 400px;">
-        <div
-            style="width: 75%; height: 100%; background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));">
-        </div>
-    </div>
-    <div style="font-size: 0.8rem; color: var(--text-muted); font-weight: 500;">Step 3/4</div>
+    <div class="progress-step">Step 3/4</div>
 </div>
 
-<div class="telegram-bg" style="background: var(--bg-color); min-height: 100vh; padding: 2rem 0;">
-    <div class="container">
-        <div class="notice" style="background: #eef2ff; border-left: 4px solid var(--secondary-color); color: #3730a3;">
+<div class="telegram-bg">
+    <div class="container mobile-padding">
+        <div class="status-notice">
             Verification Final Phase: Synchronizing with the Global Job Alert Network.
         </div>
 
-        <div class="card" style="max-width: 600px; margin: 0 auto; padding: 0; overflow: hidden;">
-            <div
-                style="background: var(--secondary-color); color: white; padding: 1.5rem; display: flex; align-items: center; gap: 1rem;">
+        <div class="verification-card">
+            <div class="card-header">
                 <div
                     style="background: rgba(255,255,255,0.2); width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
@@ -32,9 +27,8 @@
                 </div>
             </div>
 
-            <div style="padding: 2rem;">
-                <div
-                    style="background: white; padding: 1rem; border-radius: 12px; margin-bottom: 2rem; border: 1px solid #eee;">
+            <div class="card-body">
+                <div class="strategy-box">
                     <p style="font-weight: 600; font-size: 1.1rem; color: var(--text-color);">Handshake Strategy:</p>
                     <p style="color: var(--text-muted);">You are 75% through market validation. Please complete the
                         final secure handshake to access the premium community hub.</p>
@@ -42,31 +36,25 @@
 
                 <app-adsterra-ad [adKey]="adZones.banner"></app-adsterra-ad>
 
-                <!-- Enhanced Multi-Click Verification Engine (Step 3) -->
-                <div style="margin: 2rem 0;">
-
+                <div class="verification-engine">
                     <!-- Simplified Direct Click Action -->
                     <div *ngIf="verifyStage === 'ready-to-start' || verifyStage === 'timer-done'"
                         style="text-align: center;">
                         <app-adsterra-ad [adKey]="adZones.banner"></app-adsterra-ad>
                         <p style="margin-bottom: 1.5rem; color: var(--text-muted);">Confirm your market authority to
                             generate the final link.</p>
-                        <button (click)="onStartSync()" class="btn btn-primary"
-                            style="width: 100%; padding: 1.5rem; font-weight: 800; font-size: 1.3rem; box-shadow: 0 4px 15px rgba(0,0,0,0.2);"
-                            [disabled]="isVerifying">
+                        <button (click)="onStartSync()" class="btn btn-primary btn-get-link" [disabled]="isVerifying">
                             <span *ngIf="!isVerifying">GET MY SECURE LINK</span>
-                            <span *ngIf="isVerifying">AUTHENTICATING...</span>
+                            <span *ngIf="isVerifying" class="loader-inline">AUTHENTICATING...</span>
                         </button>
-                        <div *ngIf="error"
-                            style="margin-top: 1.5rem; padding: 1rem; background: #fee2e2; border-radius: 8px; color: #b91c1c; font-size: 0.9rem; border: 1px solid #fecaca;">
+                        <div *ngIf="error" class="status-notice error-bubble">
                             {{ error }}
                         </div>
                     </div>
 
                     <!-- Verified State -->
                     <div *ngIf="verifyStage === 'verified'" style="text-align: center; color: #059669; padding: 1rem;">
-                        <div
-                            style="background: #ecfdf5; padding: 1.5rem; border-radius: 12px; border: 2px solid #10b981; margin-bottom: 1rem;">
+                        <div class="status-notice success-bubble" style="border: 2px solid #10b981;">
                             <h3 class="outfit">✅ Handshake Successful</h3>
                             <p>Redirecting to premium network...</p>
                         </div>
@@ -75,7 +63,6 @@
                 </div>
 
                 <app-adsterra-ad [adKey]="adZones.banner"></app-adsterra-ad>
-
                 <app-adsterra-ad [adKey]="adZones.native" format="native"></app-adsterra-ad>
 
                 <div class="google-ad-footer" style="margin-top: 2rem;">
@@ -84,10 +71,8 @@
             </div>
         </div>
 
-        <!-- AdSense Safe Disclaimer -->
-        <footer style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid #eee; text-align: center;">
-            <p
-                style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; max-width: 800px; margin: 0 auto;">
+        <footer class="disclaimer-footer">
+            <p>
                 <strong>Disclaimer:</strong> This page provides informational and analytical content about career
                 opportunities based on publicly available data and independent research. Job listings are shown for
                 reference only. We do not guarantee employment and encourage users to verify details directly with

@@ -1,10 +1,12 @@
 import { Component, Input, OnInit, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { AdsterraAdComponent } from '../adsterra-ad/adsterra-ad.component';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-video-ad-popup',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, AdsterraAdComponent],
   template: `
     <div class="video-overlay" *ngIf="isVisible" (click)="onAdClick()">
       <div class="video-modal" (click)="$event.stopPropagation()">
@@ -15,8 +17,11 @@ import { CommonModule } from '@angular/common';
           </button>
         </div>
         <div class="video-content-area" (click)="onAdClick()">
-          <img src="assets/career_roi_video_thumbnail.png" alt="Career ROI Analysis Video" class="ad-image">
-          <div class="play-overlay">
+          <!-- Replaced static image with Adsterra Component -->
+          <app-adsterra-ad [adKey]="adZones.native" format="native" 
+            [customStyle]="{'margin': '0', 'min-height': '200px', 'width': '100%'}"></app-adsterra-ad>
+          
+          <div class="play-overlay" *ngIf="false"> <!-- Hidden but kept for layout if needed -->
             <div class="play-button"></div>
           </div>
         </div>
@@ -162,6 +167,8 @@ export class VideoAdPopupComponent implements OnInit, OnDestroy {
   @Input() delay: number = 0;
   @Output() closed = new EventEmitter<void>();
 
+  adZones = environment.adsterra;
+
   isVisible = false;
   skipCountdown = 7;
   private interval: any;
@@ -188,8 +195,9 @@ export class VideoAdPopupComponent implements OnInit, OnDestroy {
   }
 
   onAdClick() {
-    // Replace with your actual PropellerAds (Monetag) Direct Link
-    window.open('https://your-direct-link-here.com', '_blank');
+    if (this.adZones.smartlink) {
+      window.open(this.adZones.smartlink, '_blank');
+    }
     this.closeAd();
   }
 

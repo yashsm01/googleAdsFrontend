@@ -108,7 +108,12 @@ export class Step1Component implements OnInit, OnDestroy {
       "Decentralized Career Verification ROI", "The CPA Impact of Professional Branding", "Global Tech Arbitrage Wage Gaps",
       "ROI of Specialized Technical Certifications", "The Future of Digital Sales EPC", "Market Saturation and Career ROI",
       "Career Arbitrage in Developing Economies", "The Return on Investment of Soft Skills", "Technical Recruitment ROI Metrics",
-      "EPC Growth in Cybersecurity Careers", "CPA Optimization for Senior Developers", "The Job Market's EPC Frontier"
+      "EPC Growth in Cybersecurity Careers", "CPA Optimization for Senior Developers", "The Job Market's EPC Frontier",
+      "Sustainable Engineering ROI", "Data Privacy Career ROI", "Cloud Native EPC Strategies",
+      "DevOps Automation ROI 2026", "Machine Learning EPC Scalability", "Remote Infrastructure CPA",
+      "Full Stack ROI Analytics", "Frontend Performance EPC", "Backend Scalability CPA",
+      "Mobile App ROI Trends", "Blockchain EPC Integration", "Quantum Computing Career ROI",
+      "Cybersecurity CPA Best Practices", "AI Ethics in Recruitment ROI", "Digital Transformation EPC"
     ];
 
     for (let i = 0; i < topics.length; i++) {
@@ -116,9 +121,9 @@ export class Step1Component implements OnInit, OnDestroy {
         id: i,
         title: topics[i],
         hindiTitle: this.getHindiTitle(topics[i]),
-        content: `Comprehensive technical deep-dive into ${topics[i]} has revealed fascitating ROI potential. Advanced market analysis suggests a 40% growth in career authority by late 2026.`,
-        hindiContent: `${topics[i]} में गहन तकनीकी विश्लेषण ने आकर्षक आरओआई (ROI) क्षमता का खुलासा किया है। उन्नत बाज़ार विश्लेषण 2026 के अंत तक कैरियर अथॉरिटी में 40% वृद्धि का सुझाव देता है।`,
-        image: `https://picsum.photos/800/400?random=${i + 10}`
+        content: `Comprehensive technical deep-dive into ${topics[i]} has revealed fascinating ROI potential. Advanced market analysis suggests a 40% growth in career authority by late 2026. This data is critical for scaling professional EPC and maintaining a high CPA in competitive benchmarks.`,
+        hindiContent: `${topics[i]} में गहन तकनीकी विश्लेषण ने आकर्षक आरओआई (ROI) क्षमता का खुलासा किया है। उन्नत बाज़ार विश्लेषण 2026 के अंत तक कैरियर अथॉरिटी में 40% वृद्धि का सुझाव देता है। यह डेटा पेशेवर ईपीसी को स्केल करने और प्रतिस्पर्धी बेंचमार्क में उच्च सीपीए बनाए रखने के लिए महत्वपूर्ण है।`,
+        image: `https://picsum.photos/800/400?random=${i + 100}`
       });
     }
   }

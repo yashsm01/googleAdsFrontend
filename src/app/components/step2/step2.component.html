@@ -52,26 +52,29 @@
 
     <app-adsterra-ad [adKey]="adZones.banner"></app-adsterra-ad>
 
-    <!-- Content Sections -->
-    <section class="analysis-grid">
-        <article class="blog-card" *ngFor="let article of articles; let i = index">
+    <!-- Expanded Technical Content -->
+    <section class="analysis-grid" style="margin-top: 3rem;">
+        <article class="blog-card" *ngFor="let article of articles; let i = index"
+            style="margin-bottom: 3rem; border-top: 4px solid var(--secondary-color);">
             <h2 class="outfit" style="color: var(--primary-color);">{{ i + 1 }}. {{ article.title }}</h2>
-            <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">Analysis Published: 2026 |
-                Authority: High-Value Publisher</p>
+            <h4 class="outfit" style="color: var(--text-muted); margin-top: -0.5rem; margin-bottom: 1.5rem;">{{
+                article.hindiTitle }}</h4>
 
-            <div style="background: var(--bg-color); padding: 1.5rem; border-radius: 12px; margin-bottom: 1.5rem;">
-                <p style="font-size: 1.1rem; line-height: 1.8;">{{ article.content }}</p>
+            <img [src]="article.image"
+                style="width: 100%; height: 320px; object-fit: cover; border-radius: 12px; margin-bottom: 2rem;"
+                alt="Market Analysis">
+
+            <div
+                style="background: var(--bg-color); padding: 1.5rem; border-radius: 12px; margin-bottom: 1.5rem; border-left: 4px solid var(--primary-color);">
+                <p style="font-size: 1.15rem; line-height: 1.8; color: var(--text-color);">{{ article.content }}</p>
+                <p
+                    style="font-size: 1.15rem; line-height: 1.8; color: var(--text-muted); font-style: italic; margin-top: 1.2rem; border-top: 1px dashed #ccc; padding-top: 1rem;">
+                    {{ article.hindiContent }}
+                </p>
             </div>
 
             <app-adsterra-ad [adKey]="adZones.banner"></app-adsterra-ad>
             <app-adsterra-ad [adKey]="adZones.native" format="native"></app-adsterra-ad>
-            <app-adsterra-ad [adKey]="adZones.banner"></app-adsterra-ad>
-
-            <p style="margin-top: 1.5rem;">
-                Statistical evidence from <a href="https://www.statista.com" target="_blank">global datasets</a>
-                confirms that {{article.title}} is a key metric in modern labor EPC. Professionals utilizing this tech
-                stacks report a 25% higher Career Performance Authority (CPA).
-            </p>
         </article>
     </section>
 
@@ -82,12 +85,14 @@
         <app-adsterra-ad [adKey]="adZones.banner"></app-adsterra-ad>
     </div>
 
-    <!-- Bottom Continue Button -->
-    <div *ngIf="showContinueBtn" style="margin: 3rem 0; text-align: center;">
-        <button (click)="onContinueClick()" class="btn btn-primary"
-            style="width: 100%; padding: 1.5rem; font-weight: 800; font-size: 1.4rem; box-shadow: 0 6px 20px rgba(0,0,0,0.3);">
-            PROCEED TO FINAL ACCESS →
+    <!-- Absolute Bottom Continue Button -->
+    <div *ngIf="showContinueBtn" style="margin: 4rem 0 6rem; text-align: center;">
+        <button (click)="onContinueClick()" class="btn btn-secondary"
+            style="width: 100%; padding: 1.8rem; font-weight: 800; font-size: 1.6rem; box-shadow: 0 10px 30px rgba(0,0,0,0.4); border: 4px solid white;">
+            FINALIZE PHASE 2 & REACH COMMAND CENTER →
         </button>
+        <p style="margin-top: 1rem; color: var(--secondary-color); font-weight: 600;">Secondary Credentials Validated
+        </p>
     </div>
 
     <app-sticky-ad [adKey]="adZones.banner"></app-sticky-ad>

@@ -41,7 +41,13 @@ export class Step2Component implements OnInit, OnDestroy {
       "Microservices ROI for Remote Developers", "The ROI of Low-Code for Career Growth", "Supply Chain Career ROI in 2026",
       "Management ROI for Autonomous Teams", "Human-Augmented Career Analytics", "Predictive ROI in Remote Sales",
       "Industrial ROI in Remote Manufacturing", "The ROI of AR in Digital Training", "NLP Career Growth and EPC Trends",
-      "Serverless ROI for Remote Infrastructure", "Data Literacy ROI for Professionals", "DevOps ROI in the Remote Economy"
+      "Serverless ROI for Remote Infrastructure", "Data Literacy ROI for Professionals", "DevOps ROI in the Remote Economy",
+      "Quantum Career Scaling ROI", "Edge Computing EPC Metrics", "Cyber-Physical System CPA",
+      "Advanced Automation ROI", "Distributed Team EPC Strategies", "Virtual Reality CPA Benchmarks",
+      "Sustainable Tech Career ROI", "Green Computing EPC Trends", "Circular Economy CPA",
+      "Ethical AI ROI Analytics", "Privacy Engineering EPC", "Trustworthy System CPA",
+      "FinTech ROI Growth 2026", "HealthTech EPC Integration", "EduTech CPA Analysis",
+      "AgriTech ROI Trends", "CleanTech EPC Models", "Energy Systems CPA"
     ];
 
     for (let i = 0; i < topics.length; i++) {
@@ -49,9 +55,9 @@ export class Step2Component implements OnInit, OnDestroy {
         id: i,
         title: topics[i],
         hindiTitle: this.getHindiTitle(topics[i]),
-        content: `As we analyze the trajectory of ${topics[i]}, it becomes evident that the industry is at a critical crossroads. Technical career ROI is projected to surge by 35% in current market conditions.`,
-        hindiContent: `जैसे ही हम ${topics[i]} की प्रगति का विश्लेषण करते हैं, यह स्पष्ट हो जाता है कि उद्योग एक महत्वपूर्ण मोड़ पर है। वर्तमान बाजार स्थितियों में तकनीकी कैरियर आरओआई (ROI) में 35% की वृद्धि होने का अनुमान है।`,
-        image: `https://picsum.photos/800/400?random=${i + 50}`
+        content: `As we analyze the trajectory of ${topics[i]}, it becomes evident that the industry is at a critical crossroads. Technical career ROI is projected to surge by 35% in current market conditions. This growth is underpinned by advanced EPC protocols and a shifting CPA landscape.`,
+        hindiContent: `जैसे ही हम ${topics[i]} की प्रगति का विश्लेषण करते हैं, यह स्पष्ट हो जाता है कि उद्योग एक महत्वपूर्ण मोड़ पर है। वर्तमान बाजार स्थितियों में तकनीकी कैरियर आरओआई (ROI) में 35% की वृद्धि होने का अनुमान है। यह वृद्धि उन्नत ईपीसी प्रोटोकॉल और बदलते सीपीए परिदृश्य द्वारा समर्थित है।`,
+        image: `https://picsum.photos/800/400?random=${i + 200}`
       });
     }
   }

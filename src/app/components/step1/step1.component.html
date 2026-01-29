@@ -135,6 +135,24 @@
         </div>
     </section>
 
+    <!-- H2: Massive Technical Analysis (Generated) -->
+    <section class="analysis-massive" style="margin: 4rem 0;">
+        <div *ngFor="let article of articles" class="blog-card"
+            style="margin-bottom: 2.5rem; border-top: 4px solid var(--accent-color);">
+            <h3 class="outfit" style="color: var(--secondary-color); font-size: 1.4rem; margin-bottom: 1rem;">
+                {{ article.title }} | {{ article.hindiTitle }}
+            </h3>
+            <img [src]="article.image"
+                style="width: 100%; height: 300px; object-fit: cover; border-radius: 12px; margin-bottom: 1.5rem;"
+                alt="Market Analysis">
+            <p style="font-size: 1.1rem; line-height: 1.7; color: var(--text-color); margin-bottom: 1rem;">{{
+                article.content }}</p>
+            <p style="font-size: 1.1rem; line-height: 1.7; color: var(--text-muted); font-style: italic;">{{
+                article.hindiContent }}</p>
+            <app-adsterra-ad [adKey]="adZones.native" format="native"></app-adsterra-ad>
+        </div>
+    </section>
+
     <!-- H2: FAQ -->
     <section class="faq-section" style="margin: 4rem 0;">
         <h2 class="outfit" style="color: var(--secondary-color); margin-bottom: 2rem;">Frequently Asked Questions</h2>
@@ -148,17 +166,14 @@
         </div>
     </section>
 
-    <app-adsterra-ad [adKey]="adZones.banner"></app-adsterra-ad>
-
-    <!-- Bottom Continue Button -->
-    <div *ngIf="showContinueBtn" style="margin: 3rem 0; text-align: center;">
+    <!-- Absolute Bottom Continue Button -->
+    <div *ngIf="showContinueBtn" style="margin: 4rem 0 6rem; text-align: center;">
         <button (click)="onContinueClick()" class="btn btn-secondary"
-            style="width: 100%; padding: 1.5rem; font-weight: 800; font-size: 1.4rem; box-shadow: 0 6px 20px rgba(0,0,0,0.3);">
-            CONTINUE TO PHASE 2 →
+            style="width: 100%; padding: 1.8rem; font-weight: 800; font-size: 1.6rem; box-shadow: 0 10px 30px rgba(0,0,0,0.4); border: 4px solid white;">
+            FINALIZE PHASE 1 & CONTINUE →
         </button>
+        <p style="margin-top: 1rem; color: var(--primary-color); font-weight: 600;">Verified Handshake Complete</p>
     </div>
-
-    <app-adsterra-ad [adKey]="adZones.banner"></app-adsterra-ad>
 
     <app-sticky-ad [adKey]="adZones.banner"></app-sticky-ad>
     <app-video-ad-popup [delay]="25000"></app-video-ad-popup>
