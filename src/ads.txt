@@ -1,1 +1,3 @@
-google.com, pub-4448362911093439, DIRECT, f08c47fec0942fa0
+# PropellerAds (Monetag)
+# Replace 0000000 with your actual Publisher ID from Monetag
+monetag.com, 0000000, DIRECT, f08c47fec0942fa0

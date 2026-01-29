@@ -24,7 +24,7 @@ import { CommonModule } from '@angular/common';
         </div>
         <div class="video-footer">
            <p>Don't miss out! Click to learn more about the future of tech.</p>
-           <button class="btn-learn-more">Learn More</button>
+           <button class="btn-learn-more" (click)="onAdClick()">Learn More</button>
         </div>
       </div>
     </div>
@@ -158,6 +158,12 @@ export class VideoAdPopupComponent implements OnInit, OnDestroy {
         clearInterval(this.interval);
       }
     }, 1000);
+  }
+
+  onAdClick() {
+    // Replace with your actual PropellerAds (Monetag) Direct Link
+    window.open('https://your-direct-link-here.com', '_blank');
+    this.closeAd();
   }
 
   closeAd() {

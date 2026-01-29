@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { VerifyService } from '../../services/verify.service';
-import { GoogleAdComponent } from '../google-ad/google-ad.component';
+import { PropellerAdComponent } from '../propeller-ad/propeller-ad.component';
 import { StickyAdComponent } from '../sticky-ad/sticky-ad.component';
 import { VideoAdPopupComponent } from '../video-ad-popup/video-ad-popup.component';
 import { environment } from '../../../environments/environment';
@@ -10,12 +10,12 @@ import { environment } from '../../../environments/environment';
 @Component({
   selector: 'app-step2',
   standalone: true,
-  imports: [CommonModule, GoogleAdComponent, StickyAdComponent, VideoAdPopupComponent],
+  imports: [CommonModule, PropellerAdComponent, StickyAdComponent, VideoAdPopupComponent],
   templateUrl: './step2.component.html',
   styleUrl: './step2.component.css'
 })
 export class Step2Component implements OnInit, OnDestroy {
-  adSlots = environment.adSlots;
+  adZones = environment.propellerAds;
   timeLeft = 15;
   timerStarted = false;
   showContinueBtn = false;

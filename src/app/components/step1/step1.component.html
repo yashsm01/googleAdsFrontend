@@ -28,8 +28,8 @@
         </p>
     </section>
 
-    <!-- AdSense Slot: Top Banner -->
-    <app-google-ad [adSlot]="adSlots.top"></app-google-ad>
+    <!-- PropellerAds Zone: Top Banner -->
+    <app-propeller-ad [zoneId]="adZones.banner"></app-propeller-ad>
 
     <!-- H2: Skills Section -->
     <section class="skills-section" style="margin: 4rem 0;">
@@ -88,8 +88,8 @@
         </div>
     </section>
 
-    <!-- AdSense Slot: Middle -->
-    <app-google-ad [adSlot]="adSlots.middle"></app-google-ad>
+    <!-- PropellerAds Zone: Middle -->
+    <app-propeller-ad [zoneId]="adZones.banner"></app-propeller-ad>
 
     <!-- H2: How to Apply Safely -->
     <section class="safety-section"
@@ -133,7 +133,7 @@
         </button>
     </div>
 
-    <app-sticky-ad [adSlot]="adSlots.bottom"></app-sticky-ad>
+    <app-sticky-ad [zoneId]="adZones.banner"></app-sticky-ad>
     <app-video-ad-popup [delay]="25000"></app-video-ad-popup>
 
     <!-- AdSense Safe Disclaimer -->

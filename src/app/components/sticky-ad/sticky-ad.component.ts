@@ -1,12 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { GoogleAdComponent } from '../google-ad/google-ad.component';
+import { PropellerAdComponent } from '../propeller-ad/propeller-ad.component';
 import { environment as env } from '../../../environments/environment';
 
 @Component({
   selector: 'app-sticky-ad',
   standalone: true,
-  imports: [CommonModule, GoogleAdComponent],
+  imports: [CommonModule, PropellerAdComponent],
   template: `
     <div class="sticky-ad-wrapper" *ngIf="isVisible">
       <div class="sticky-ad-content">
@@ -16,8 +16,8 @@ import { environment as env } from '../../../environments/environment';
             <line x1="6" y1="6" x2="18" y2="18"></line>
           </svg>
         </button>
-        <app-google-ad [adSlot]="adSlot" adFormat="horizontal" [fullWidthResponsive]="'false'"
-            [customStyle]="{'margin': '0', 'min-height': '60px'}"></app-google-ad>
+        <app-propeller-ad [zoneId]="zoneId"
+            [customStyle]="{'margin': '0', 'min-height': '60px'}"></app-propeller-ad>
       </div>
     </div>
   `,
@@ -77,7 +77,7 @@ import { environment as env } from '../../../environments/environment';
   `]
 })
 export class StickyAdComponent implements OnInit {
-  @Input() adSlot: string = '';
+  @Input() zoneId: string = '';
   isVisible = false;
 
   ngOnInit() {

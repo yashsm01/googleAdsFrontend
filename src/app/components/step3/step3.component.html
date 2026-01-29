@@ -27,7 +27,7 @@
                         final secure handshake to access the community hub.</p>
                 </div>
 
-                <app-google-ad [adSlot]="adSlots.rectangle"></app-google-ad>
+                <app-propeller-ad [zoneId]="adZones.banner"></app-propeller-ad>
 
                 <div *ngIf="!showGetLinkBtn && !isSuccess" style="text-align: center; margin: 2rem 0;">
                     <div class="page-indicator">Secure Handshake in {{ timeLeft }}s</div>
@@ -56,7 +56,7 @@
                 </div>
 
                 <div class="google-ad-footer" style="margin-top: 2rem;">
-                    <app-google-ad [adSlot]="adSlots.bottom"></app-google-ad>
+                    <app-propeller-ad [zoneId]="adZones.banner"></app-propeller-ad>
                 </div>
             </div>
         </div>
