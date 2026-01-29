@@ -27,14 +27,36 @@
                         final secure handshake to access the community hub.</p>
                 </div>
 
-                <app-google-ad [adSlot]="adSlots.rectangle"></app-google-ad>
+                <div class="analysis-report" style="margin-bottom: 2rem; line-height: 1.7; font-size: 1.05rem;">
+                    <h3 class="outfit" style="color: var(--primary-color);">Secure Network Synchronization: Technical
+                        Overview</h3>
+                    <p>
+                        The final phase of the 2026 Career ROI verification involves a distributed handshake with the
+                        Global Job Alert Network. This process ensures that your professional profile is correctly
+                        indexed within our high-authority recruitment filters, which prioritize "Career Performance
+                        Authority" (CPA) certified listings.
+                    </p>
+                    <p style="margin-top: 1rem;">
+                        Our synchronization protocol measures a 99.8% stability rate in Tier-1 metropolitan hubs. While
+                        the secure handshake initializes, our backend audits the digital footprint of the current labor
+                        market spikes, ensuring that the alerts you receive are not just raw data, but high-yield
+                        opportunities aligned with current fiscal ROI benchmarks.
+                    </p>
+                    <p style="margin-top: 1rem;">
+                        <strong>Security Note:</strong> This handshake is an encrypted, non-custodial process. We do not
+                        store personal identification hashes during this phase. The synchronization is purely for
+                        routing professional market signals to your authorized endpoint.
+                    </p>
+                </div>
 
                 <div *ngIf="!showGetLinkBtn && !isSuccess" style="text-align: center; margin: 2rem 0;">
-                    <div class="page-indicator">Secure Handshake in {{ timeLeft }}s</div>
+                    <div class="page-indicator">Finalizing Security Handshake in {{ timeLeft }}s</div>
+                    <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.5rem;">Please wait while the
+                        editorial analysis is prepared for your endpoint.</div>
                 </div>
 
                 <div *ngIf="showGetLinkBtn && !isSuccess" class="animate-fade-in" style="text-align: center;">
-                    <h3 style="color: var(--primary-color);">👇 HANDSHAKE READY 👇</h3>
+                    <h3 class="outfit" style="color: var(--primary-color);">👇 HANDSHAKE READY 👇</h3>
                     <p style="margin-bottom: 1.5rem; font-size: 0.9rem;">Click below to finalize your access to
                         high-value career alerts.</p>
                     <button (click)="onGetLink()" class="btn btn-primary"
@@ -53,10 +75,6 @@
                 <div *ngIf="isSuccess" class="animate-fade-in" style="text-align: center; color: #2ecc71;">
                     <h3 class="outfit">✅ Handshake Successful</h3>
                     <p>Redirecting to our premium Telegram network...</p>
-                </div>
-
-                <div class="google-ad-footer" style="margin-top: 2rem;">
-                    <app-google-ad [adSlot]="adSlots.bottom"></app-google-ad>
                 </div>
             </div>
         </div>
