@@ -6,25 +6,23 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule],
   template: `
-    <div class="video-overlay" *ngIf="isVisible">
-      <div class="video-modal">
+    <div class="video-overlay" *ngIf="isVisible" (click)="onAdClick()">
+      <div class="video-modal" (click)="$event.stopPropagation()">
         <div class="video-header">
-          <span>Sponsored Content</span>
-          <button class="skip-btn" [disabled]="skipCountdown > 0" (click)="closeAd()">
-            {{ skipCountdown > 0 ? 'Skip in ' + skipCountdown + 's' : 'SKIP VIDEO' }}
+          <span class="outfit" style="color: #4ade80;">Handshake Sponsored: Career ROI Analysis</span>
+          <button class="skip-btn" [disabled]="skipCountdown > 0" (click)="closeAd($event)">
+            {{ skipCountdown > 0 ? 'Skip in ' + skipCountdown + 's' : 'SKIP AD' }}
           </button>
         </div>
-        <div class="video-placeholder">
-          <div class="spinner"></div>
-          <p>Loading High Quality Video...</p>
-          <div class="mock-video-content">
-             <!-- This would be an iframe or video tag in production -->
-             <div class="ad-pulse"></div>
+        <div class="video-content-area" (click)="onAdClick()">
+          <img src="assets/career_roi_video_thumbnail.png" alt="Career ROI Analysis Video" class="ad-image">
+          <div class="play-overlay">
+            <div class="play-button"></div>
           </div>
         </div>
         <div class="video-footer">
-           <p>Don't miss out! Click to learn more about the future of tech.</p>
-           <button class="btn-learn-more" (click)="onAdClick()">Learn More</button>
+           <p class="outfit">Unlock elite career authority metrics. Click to sync results.</p>
+           <button class="btn-learn-more" (click)="onAdClick()">SYNC MY ROI NOW →</button>
         </div>
       </div>
     </div>
@@ -36,98 +34,127 @@ import { CommonModule } from '@angular/common';
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0,0,0,0.9);
+      background: rgba(0,0,0,0.92);
       z-index: 20000;
       display: flex;
       align-items: center;
       justify-content: center;
-      backdrop-filter: blur(5px);
+      backdrop-filter: blur(8px);
     }
     .video-modal {
-      width: 90%;
-      max-width: 600px;
-      background: #1a1a1a;
-      border-radius: 12px;
+      width: 95%;
+      max-width: 500px;
+      background: #0a0a0a;
+      border-radius: 16px;
       overflow: hidden;
-      box-shadow: 0 0 30px rgba(0,255,150,0.2);
+      box-shadow: 0 0 50px rgba(0,0,0,0.5), 0 0 20px rgba(74, 222, 128, 0.2);
+      border: 1px solid rgba(255,255,255,0.1);
+      animation: modalSlide 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .video-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 15px;
-      background: #222;
-      color: #ccc;
-      font-size: 14px;
+      padding: 12px 16px;
+      background: #141414;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
     }
     .skip-btn {
-      background: rgba(99, 102, 241, 0.3);
-      color: rgba(255, 255, 255, 0.6);
-      border: none;
-      padding: 4px 10px;
-      border-radius: 4px;
-      font-size: 10px;
-      font-weight: 500;
+      background: rgba(255,255,255,0.1);
+      color: rgba(255, 255, 255, 0.8);
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 700;
       cursor: pointer;
-      transition: all 0.3s;
+      transition: all 0.2s;
     }
     .skip-btn:hover:not(:disabled) {
-      background: var(--primary);
+      background: #ef4444;
+      border-color: #ef4444;
       color: white;
     }
     .skip-btn:disabled {
-      background: #333;
-      color: #555;
+      opacity: 0.5;
       cursor: not-allowed;
     }
-    .video-placeholder {
-      height: 300px;
-      background: black;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      color: #666;
+    .video-content-area {
       position: relative;
+      width: 100%;
+      aspect-ratio: 1;
+      background: black;
+      cursor: pointer;
+      overflow: hidden;
     }
-    .mock-video-content {
+    .ad-image {
       width: 100%;
       height: 100%;
-      background: linear-gradient(45deg, #111 25%, #222 50%, #111 75%);
-      background-size: 200% 200%;
-      animation: gradientBg 3s ease infinite;
+      object-fit: cover;
+      transition: transform 0.5s;
     }
-    .ad-pulse {
+    .video-content-area:hover .ad-image {
+      transform: scale(1.05);
+    }
+    .play-overlay {
       position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0,0,0,0.2);
+    }
+    .play-button {
       width: 80px;
       height: 80px;
-      border: 3px solid var(--primary);
+      background: rgba(255,255,255,0.9);
       border-radius: 50%;
-      animation: pulse 2s infinite;
+      position: relative;
+      box-shadow: 0 0 30px rgba(0,0,0,0.5);
+    }
+    .play-button::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 55%;
+      transform: translate(-50%, -50%);
+      border-left: 25px solid black;
+      border-top: 15px solid transparent;
+      border-bottom: 15px solid transparent;
     }
     .video-footer {
-      padding: 20px;
+      padding: 24px;
       text-align: center;
-      color: white;
+      background: linear-gradient(to bottom, #141414, #0a0a0a);
+    }
+    .video-footer p {
+      color: #999;
+      margin-bottom: 20px;
+      font-size: 0.95rem;
     }
     .btn-learn-more {
-      background: white;
-      color: black;
+      background: #4ade80;
+      color: #052e16;
       border: none;
-      padding: 10px 20px;
-      border-radius: 20px;
-      font-weight: bold;
-      margin-top: 10px;
+      padding: 14px 28px;
+      border-radius: 12px;
+      font-weight: 800;
+      width: 100%;
       cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 0 4px 15px rgba(74, 222, 128, 0.3);
     }
-    @keyframes gradientBg {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+    .btn-learn-more:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(74, 222, 128, 0.4);
+      background: #22c55e;
     }
-    @keyframes pulse {
-      0% { transform: scale(0.8); opacity: 1; }
-      100% { transform: scale(1.5); opacity: 0; }
+    @keyframes modalSlide {
+      from { opacity: 0; transform: translateY(30px) scale(0.95); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
     }
   `]
 })
@@ -166,7 +193,10 @@ export class VideoAdPopupComponent implements OnInit, OnDestroy {
     this.closeAd();
   }
 
-  closeAd() {
+  closeAd(event?: Event) {
+    if (event) {
+      event.stopPropagation();
+    }
     this.isVisible = false;
     this.closed.emit();
   }

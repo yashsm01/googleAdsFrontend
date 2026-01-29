@@ -8,14 +8,14 @@ import { environment as env } from '../../../environments/environment';
   standalone: true,
   imports: [CommonModule, AdsterraAdComponent],
   template: `
-    <div class="sticky-ad-wrapper" *ngIf="isVisible">
-      <div class="sticky-ad-content">
-        <button class="close-btn" (click)="closeAd()" aria-label="Close Ad">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="18" y1="6" x2="6" y2="18"></line>
-            <line x1="6" y1="6" x2="18" y2="18"></line>
-          </svg>
-        </button>
+    <div class="sticky-ad-wrapper" *ngIf="isVisible" (click)="onAdContentClick()">
+      <button class="close-btn" (click)="closeAd($event)" aria-label="Close Ad">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+      <div class="sticky-ad-content" (click)="$event.stopPropagation()">
         <app-adsterra-ad [adKey]="adKey"
             [customStyle]="{'margin': '0', 'min-height': '60px'}"></app-adsterra-ad>
       </div>
@@ -27,52 +27,51 @@ import { environment as env } from '../../../environments/environment';
       bottom: 0;
       left: 0;
       width: 100%;
-      height: 40vh;
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(10px);
-      box-shadow: 0 -10px 30px rgba(0,0,0,0.1);
+      height: auto;
+      min-height: 80px;
+      background: white;
+      box-shadow: 0 -10px 40px rgba(0,0,0,0.15);
       z-index: 9999;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 20px;
-      border-top: 1px solid rgba(0,0,0,0.05);
+      padding: 15px;
+      border-top: 3px solid var(--primary-color);
+      animation: slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .sticky-ad-content {
-      position: relative;
       width: 100%;
-      max-width: 800px;
-      height: 100%;
+      max-width: 728px;
       display: flex;
       align-items: center;
       justify-content: center;
     }
     .close-btn {
       position: absolute;
-      top: -12px; /* Half of 24px */
-      right: 20px;
-      background: #1a1a1b;
+      top: -18px;
+      right: 15px;
+      background: #ef4444;
       color: white;
-      border: 2.5px solid white;
+      border: 2px solid white;
       border-radius: 50%;
-      width: 24px;
-      height: 24px;
+      width: 32px;
+      height: 32px;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
       z-index: 10001;
-      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
+      transition: all 0.2s;
     }
     .close-btn:hover {
-      background: #ef4444;
       transform: scale(1.1) rotate(90deg);
-      box-shadow: 0 6px 20px rgba(239, 68, 68, 0.4);
+      background: #dc2626;
     }
-    .close-btn:active {
-      transform: scale(0.9);
+    @keyframes slideUp {
+      from { transform: translateY(100%); }
+      to { transform: translateY(0); }
     }
   `]
 })
@@ -87,7 +86,13 @@ export class StickyAdComponent implements OnInit {
     }, 1000);
   }
 
-  closeAd() {
+  closeAd(event: Event) {
+    event.stopPropagation();
     this.isVisible = false;
+  }
+
+  onAdContentClick() {
+    // This provides a backup click area that opens the smartlink
+    // but the Adsterra component usually handles this inside its iframe
   }
 }
