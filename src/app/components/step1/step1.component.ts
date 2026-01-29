@@ -163,7 +163,13 @@ export class Step1Component implements OnInit, OnDestroy {
       this.verifyStage = 'verified';
       this.showContinueBtn = true;
     } else {
-      // Auto-start timer for Step 1
+      this.verifyStage = 'initial';
+    }
+  }
+
+  onStartTimer() {
+    if (this.verifyStage === 'initial') {
+      this.verifyStage = 'timer-running';
       this.startTimer();
     }
   }

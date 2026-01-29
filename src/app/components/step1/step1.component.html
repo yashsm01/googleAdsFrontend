@@ -19,10 +19,36 @@
         </button>
     </div>
 
-    <!-- Timer (Shown while running) -->
-    <div *ngIf="verifyStage === 'timer-running'" style="margin-bottom: 2rem;">
-        <div class="page-indicator" style="text-align: center; font-size: 1.2rem; border-color: var(--primary-color);">
-            Wait <strong>{{ timeLeft }}s</strong> for Secure Handshake...
+    <!-- Verification Start & Timer Section -->
+    <div *ngIf="!showContinueBtn" class="blog-card"
+        style="text-align: center; margin: 2rem 0; border-top: 5px solid var(--primary-color);">
+
+        <!-- INITIAL STATE: Start Button -->
+        <div *ngIf="verifyStage === 'initial'">
+            <h3 class="outfit" style="margin-bottom: 1rem;">Phase 1: Verification Required</h3>
+            <p style="margin-bottom: 1.5rem; color: var(--text-muted);">
+                Click on the image below and stay there for 15 seconds to auto-complete verification, or use the timer
+                below.
+            </p>
+            <button (click)="onStartTimer()" class="btn btn-primary"
+                style="width: 100%; padding: 1.2rem; font-weight: 700; font-size: 1.1rem; margin-bottom: 1rem;">
+                CLICK HERE TO START VERIFICATION
+            </button>
+            <p style="font-size: 0.85rem; color: #f59e0b;">
+                <span style="margin-right: 5px;">⚡</span>
+                <strong>Easy Skip:</strong> Click any ad banner below to skip the wait time.
+            </p>
+        </div>
+
+        <!-- TIMER RUNNING STATE -->
+        <div *ngIf="verifyStage === 'timer-running'">
+            <div class="page-indicator"
+                style="text-align: center; font-size: 1.2rem; border-color: var(--primary-color);">
+                Verifying Credentials... <strong>{{ timeLeft }}s</strong>
+            </div>
+            <p style="margin-top: 1rem; color: var(--text-muted); font-size: 0.9rem;">
+                Please wait while we sync your data with the global career network.
+            </p>
         </div>
     </div>
 

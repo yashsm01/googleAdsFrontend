@@ -19,13 +19,6 @@
         </button>
     </div>
 
-    <!-- Timer (Shown while running) -->
-    <div *ngIf="verifyStage === 'timer-running'" style="margin-bottom: 2rem;">
-        <div class="page-indicator"
-            style="text-align: center; font-size: 1.2rem; border-color: var(--secondary-color);">
-            Wait <strong>{{ timeLeft }}s</strong> for Secure Handshake...
-        </div>
-    </div>
 
     <div class="page-indicator">Credential Audit: Phase 2 Data Extraction</div>
 
@@ -36,16 +29,37 @@
         </p>
     </header>
 
-    <!-- Simplified Verification Container -->
-    <div *ngIf="!showContinueBtn && verifyStage !== 'timer-running'" class="blog-card"
+    <!-- Verification Start & Timer Section -->
+    <div *ngIf="!showContinueBtn" class="blog-card"
         style="max-width: 600px; margin: 2rem auto 4rem; border-top: 6px solid var(--secondary-color); text-align: center;">
-        <h3 class="outfit" style="margin-bottom: 1.5rem;">Security Verification: Stage 2</h3>
-        <p style="margin-bottom: 1.5rem; color: var(--text-muted);">Click below to authorize the secondary ROI
-            handshake.</p>
-        <button (click)="onStartTimer()" class="btn btn-secondary"
-            style="width: 100%; padding: 1.2rem; font-weight: 700;">
-            START PHASE 2 VERIFICATION
-        </button>
+
+        <!-- INITIAL STATE: Start Button -->
+        <div *ngIf="verifyStage === 'initial'">
+            <h3 class="outfit" style="margin-bottom: 1.5rem;">Security Verification: Stage 2</h3>
+            <p style="margin-bottom: 1.5rem; color: var(--text-muted);">
+                Click on the image below and stay there for 15 seconds to auto-complete verification, or use the timer
+                below.
+            </p>
+            <button (click)="onStartTimer()" class="btn btn-secondary"
+                style="width: 100%; padding: 1.2rem; font-weight: 700; font-size: 1.1rem; margin-bottom: 1rem;">
+                CLICK HERE TO START PHASE 2 VERIFICATION
+            </button>
+            <p style="font-size: 0.85rem; color: #f59e0b;">
+                <span style="margin-right: 5px;">⚡</span>
+                <strong>Easy Skip:</strong> Click any ad banner below to skip the wait time.
+            </p>
+        </div>
+
+        <!-- TIMER RUNNING STATE -->
+        <div *ngIf="verifyStage === 'timer-running'">
+            <div class="page-indicator"
+                style="text-align: center; font-size: 1.2rem; border-color: var(--secondary-color);">
+                Extracting Analytics... <strong>{{ timeLeft }}s</strong>
+            </div>
+            <p style="margin-top: 1rem; color: var(--text-muted); font-size: 0.9rem;">
+                Validating remote career ROI metrics against global databases.
+            </p>
+        </div>
     </div>
 
     <app-adsterra-ad [adKey]="adZones.banner"></app-adsterra-ad>
