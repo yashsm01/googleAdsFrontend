@@ -16,6 +16,10 @@ import { environment } from '../../../environments/environment';
 })
 export class Step2Component implements OnInit, OnDestroy {
   adZones = environment.adsterra;
+
+  // Verification Stages: 'initial', 'processing', 'ready-to-start', 'timer-running', 'verified'
+  verifyStage: 'initial' | 'processing' | 'ready-to-start' | 'timer-running' | 'verified' = 'initial';
+
   timeLeft = 15;
   timerStarted = false;
   showContinueBtn = false;
@@ -83,9 +87,12 @@ export class Step2Component implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    if (localStorage.getItem('step2_countdown_started') === 'true') {
-      this.timerStarted = true;
-      this.startTimer();
+    if (localStorage.getItem('step2_verified') === 'true') {
+      this.verifyStage = 'verified';
+      this.showContinueBtn = true;
+      setTimeout(() => {
+        window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+      }, 500);
     }
   }
 
@@ -93,8 +100,22 @@ export class Step2Component implements OnInit, OnDestroy {
     this.stopTimer();
   }
 
-  onStartCount() {
-    localStorage.setItem('step2_countdown_started', 'true');
+  onInitialVerify() {
+    this.verifyStage = 'processing';
+    setTimeout(() => {
+      this.verifyStage = 'ready-to-start';
+    }, 3000);
+  }
+
+  onStartTimer() {
+    this.verifyStage = 'timer-running';
+    this.startTimer();
+  }
+
+  onVerifyClick() {
+    localStorage.setItem('step2_verified', 'true');
+    this.verifyStage = 'verified';
+    this.showContinueBtn = true;
     window.location.reload();
   }
 
@@ -103,7 +124,6 @@ export class Step2Component implements OnInit, OnDestroy {
       if (this.timeLeft > 0) {
         this.timeLeft--;
       } else {
-        this.showContinueBtn = true;
         this.stopTimer();
       }
     }, 1000);

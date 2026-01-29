@@ -1,5 +1,17 @@
-<div class="container">
-    <div class="page-indicator">Step 1: Market Intelligence</div>
+<div class="progress-container"
+    style="background: white; border-bottom: 2px solid #f0f0f0; padding: 1rem; position: sticky; top: 0; z-index: 1000; display: flex; align-items: center; justify-content: center; gap: 1rem;">
+    <div style="font-size: 0.9rem; font-weight: 600; color: var(--text-muted); white-space: nowrap;">Verification: 25%
+    </div>
+    <div style="flex: 1; height: 10px; background: #eee; border-radius: 5px; overflow: hidden; max-width: 400px;">
+        <div
+            style="width: 25%; height: 100%; background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));">
+        </div>
+    </div>
+    <div style="font-size: 0.8rem; color: var(--text-muted); font-weight: 500;">Step 1/4</div>
+</div>
+
+<div class="container" style="max-width: 900px;">
+    <div class="page-indicator">Credential Audit: Initial Technical Handshake</div>
 
     <!-- H1: Content-First Header -->
     <header style="text-align: center; margin-bottom: 3rem;">
@@ -7,6 +19,7 @@
             (2026)</h1>
     </header>
 
+    <!-- Intro: 3 Paragraphs of high-value analysis -->
     <!-- Intro: 3 Paragraphs of high-value analysis -->
     <section class="analysis-intro blog-card" style="margin-bottom: 3rem; border-left: 5px solid var(--accent-color);">
         <p style="font-size: 1.1rem; line-height: 1.7; margin-bottom: 1.5rem;">
@@ -28,7 +41,6 @@
         </p>
     </section>
 
-    <!-- PropellerAds Zone: Top Banner -->
     <app-adsterra-ad [adKey]="adZones.banner"></app-adsterra-ad>
 
     <!-- H2: Skills Section -->
@@ -54,6 +66,8 @@
             </div>
         </div>
     </section>
+
+    <app-adsterra-ad [adKey]="adZones.banner"></app-adsterra-ad>
 
     <!-- H2: Sample Job Openings -->
     <section class="jobs-section" style="margin: 4rem 0;">
@@ -115,23 +129,77 @@
         </div>
     </section>
 
-    <!-- Verification Section (Bottom) -->
-    <div class="blog-card" *ngIf="!showContinueBtn"
-        style="text-align: center; margin-top: 4rem; background: var(--primary-color); color: white;">
-        <h3 *ngIf="!showVerifyBtn">Technical Validation in progress... {{ timeLeft }}s</h3>
-        <button *ngIf="showVerifyBtn" (click)="onVerifyClick()" class="btn"
-            style="background: white; color: var(--primary-color); width: 100%; font-weight: bold;">
-            Continue to Next Analysis
-        </button>
+    <!-- Enhanced Multi-Click Verification Engine -->
+    <div class="blog-card" style="max-width: 600px; margin: 4rem auto; border-top: 6px solid var(--primary-color);">
+        <h3 class="outfit" style="margin-bottom: 1.5rem;">Security Verification Stage: 1</h3>
+
+        <!-- Stage 1: Initial -->
+        <div *ngIf="verifyStage === 'initial'">
+            <p style="margin-bottom: 1.5rem; color: var(--text-muted);">Please click below to start your professional
+                credential audit.</p>
+            <button (click)="onInitialVerify()" class="btn btn-primary"
+                style="width: 100%; padding: 1.2rem; font-weight: 700;">
+                VERIFY LABOR CREDENTIALS
+            </button>
+            <p style="margin-top: 1rem; font-size: 0.8rem; color: var(--text-muted); font-style: italic;">Connecting to
+                SerpApi Job Real-Time Database...</p>
+        </div>
+
+        <!-- Stage 2: Processing -->
+        <div *ngIf="verifyStage === 'processing'">
+            <div style="text-align: center; padding: 1rem;">
+                <div class="spinner" style="margin: 0 auto 1.5rem;"></div>
+                <h4 class="outfit" style="color: var(--primary-color);">ENCRYPTING DATA...</h4>
+                <p style="font-size: 0.85rem; color: var(--text-muted);">This will take approx 3 seconds...</p>
+            </div>
+        </div>
+
+        <!-- Stage 3: Ready to Start -->
+        <div *ngIf="verifyStage === 'ready-to-start'">
+            <div
+                style="background: #fff9db; padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem; border: 1px solid #ffd93d;">
+                <p style="color: #856404; font-size: 0.9rem; font-weight: 600;">Handshake Protocol Ready!</p>
+            </div>
+            <button (click)="onStartTimer()" class="btn btn-secondary"
+                style="width: 100%; padding: 1.2rem; font-weight: 700;">
+                START 15-SECOND CONTENT SYNC
+            </button>
+        </div>
+
+        <!-- Stage 4: Timer Running -->
+        <div *ngIf="verifyStage === 'timer-running'">
+            <div style="padding: 2rem; background: var(--bg-color); border-radius: 12px; margin-bottom: 1.5rem;">
+                <div class="page-indicator"
+                    style="font-size: 1.4rem; padding: 1rem 2.5rem; border-color: var(--primary-color); display: block; width: fit-content; margin: 0 auto;">
+                    {{ timeLeft }}s Wait Time
+                </div>
+                <p style="margin-top: 1.5rem; font-size: 0.9rem; color: var(--text-muted);">
+                    Sycing technical labor reports with your session ID. Do not refresh.
+                </p>
+            </div>
+            <div *ngIf="timeLeft === 0">
+                <button (click)="onVerifyClick()" class="btn btn-primary"
+                    style="width: 100%; padding: 1.2rem; font-weight: 700;">
+                    FINALIZE PHASE 1 ACCESS
+                </button>
+            </div>
+        </div>
+
+        <!-- Stage 5: Verified -->
+        <div *ngIf="verifyStage === 'verified'">
+            <div
+                style="background: #e6fffa; border: 2px solid #38b2ac; color: #234e52; padding: 1.5rem; border-radius: 12px; margin-bottom: 2rem;">
+                <h3 class="outfit" style="font-size: 1.2rem;">✓ Phase 1 Authenticated</h3>
+                <p style="font-size: 0.9rem;">Your ROI analysis is now unlocked for redirection.</p>
+            </div>
+            <button (click)="onContinueClick()" class="btn btn-secondary"
+                style="width: 100%; padding: 1.2rem; font-weight: 700;">
+                CONTINUE TO REMOTE WORK ROI →
+            </button>
+        </div>
     </div>
 
-    <div *ngIf="showContinueBtn" class="blog-card"
-        style="text-align: center; margin-top: 4rem; border: 2px solid var(--secondary-color);">
-        <h2 class="outfit" style="color: var(--secondary-color);">Report Analysis Complete!</h2>
-        <button (click)="onContinueClick()" class="btn btn-secondary" style="margin-top: 1rem; width: 100%;">
-            Proceed to Phase 2: Remote Work ROI
-        </button>
-    </div>
+    <app-adsterra-ad [adKey]="adZones.banner"></app-adsterra-ad>
 
     <app-sticky-ad [adKey]="adZones.banner"></app-sticky-ad>
     <app-video-ad-popup [delay]="25000"></app-video-ad-popup>

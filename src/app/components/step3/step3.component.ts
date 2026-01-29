@@ -14,7 +14,11 @@ import { environment } from '../../../environments/environment';
 })
 export class Step3Component implements OnInit, OnDestroy {
   adZones = environment.adsterra;
-  timeLeft = 8;
+
+  // Verification Stages: 'initial', 'processing', 'ready-to-start', 'timer-running', 'timer-done', 'verified'
+  verifyStage: 'initial' | 'processing' | 'ready-to-start' | 'timer-running' | 'timer-done' | 'verified' = 'initial';
+
+  timeLeft = 15;
   showGetLinkBtn = false;
   isVerifying = false;
   isSuccess = false;
@@ -28,11 +32,23 @@ export class Step3Component implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.startTimer();
+    // Initial state is 'initial' - wait for user click
   }
 
   ngOnDestroy() {
     this.stopTimer();
+  }
+
+  onInitialVerify() {
+    this.verifyStage = 'processing';
+    setTimeout(() => {
+      this.verifyStage = 'ready-to-start';
+    }, 3000);
+  }
+
+  onStartSync() {
+    this.verifyStage = 'timer-running';
+    this.startTimer();
   }
 
   startTimer() {
@@ -40,6 +56,7 @@ export class Step3Component implements OnInit, OnDestroy {
       if (this.timeLeft > 0) {
         this.timeLeft--;
       } else {
+        this.verifyStage = 'timer-done';
         this.showGetLinkBtn = true;
         this.isTyping = false;
         this.stopTimer();
@@ -80,6 +97,7 @@ export class Step3Component implements OnInit, OnDestroy {
         console.log('[DEBUG] API Response Received:', res);
         if (res.status === 'success' || res.ok) {
           this.isSuccess = true;
+          this.verifyStage = 'verified';
           if (res.data) this.verifyService.setBotData(res.data);
           setTimeout(() => window.location.href = '/verify/step4', 1500);
         } else {

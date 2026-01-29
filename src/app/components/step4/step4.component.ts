@@ -14,7 +14,7 @@ import { environment } from '../../../environments/environment';
 export class Step4Component implements OnInit, OnDestroy {
   adZones = environment.adsterra;
   botData: any;
-  timeLeft = 5;
+  timeLeft = 15;
   interval: any;
 
   constructor(private verifyService: VerifyService) { }

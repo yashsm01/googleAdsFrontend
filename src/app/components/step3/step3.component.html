@@ -1,3 +1,15 @@
+<div class="progress-container"
+    style="background: white; border-bottom: 2px solid #f0f0f0; padding: 1rem; position: sticky; top: 0; z-index: 1000; display: flex; align-items: center; justify-content: center; gap: 1rem;">
+    <div style="font-size: 0.9rem; font-weight: 600; color: var(--text-muted); white-space: nowrap;">Verification: 75%
+    </div>
+    <div style="flex: 1; height: 10px; background: #eee; border-radius: 5px; overflow: hidden; max-width: 400px;">
+        <div
+            style="width: 75%; height: 100%; background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));">
+        </div>
+    </div>
+    <div style="font-size: 0.8rem; color: var(--text-muted); font-weight: 500;">Step 3/4</div>
+</div>
+
 <div class="telegram-bg" style="background: var(--bg-color); min-height: 100vh; padding: 2rem 0;">
     <div class="container">
         <div class="notice" style="background: #eef2ff; border-left: 4px solid var(--secondary-color); color: #3730a3;">
@@ -21,39 +33,84 @@
             </div>
 
             <div style="padding: 2rem;">
-                <div style="background: #f3f4f6; padding: 1rem; border-radius: 12px; margin-bottom: 2rem;">
-                    <p style="font-weight: 600; font-size: 1.1rem; color: var(--text-color);">System Status:</p>
-                    <p style="color: var(--text-muted);">You are 90% through the market validation. Please complete the
-                        final secure handshake to access the community hub.</p>
+                <div
+                    style="background: white; padding: 1rem; border-radius: 12px; margin-bottom: 2rem; border: 1px solid #eee;">
+                    <p style="font-weight: 600; font-size: 1.1rem; color: var(--text-color);">Handshake Strategy:</p>
+                    <p style="color: var(--text-muted);">You are 75% through market validation. Please complete the
+                        final secure handshake to access the premium community hub.</p>
                 </div>
 
                 <app-adsterra-ad [adKey]="adZones.banner"></app-adsterra-ad>
 
-                <div *ngIf="!showGetLinkBtn && !isSuccess" style="text-align: center; margin: 2rem 0;">
-                    <div class="page-indicator">Secure Handshake in {{ timeLeft }}s</div>
-                </div>
+                <!-- Enhanced Multi-Click Verification Engine (Step 3) -->
+                <div style="margin: 2rem 0;">
 
-                <div *ngIf="showGetLinkBtn && !isSuccess" class="animate-fade-in" style="text-align: center;">
-                    <h3 style="color: var(--primary-color);">👇 HANDSHAKE READY 👇</h3>
-                    <p style="margin-bottom: 1.5rem; font-size: 0.9rem;">Click below to finalize your access to
-                        high-value career alerts.</p>
-                    <button (click)="onGetLink()" class="btn btn-primary"
-                        style="width: 100%; border-radius: 12px; font-weight: 600;" [disabled]="isVerifying">
-                        <span *ngIf="!isVerifying">ACCESS CAREER HUB</span>
-                        <span *ngIf="isVerifying">Verifying Handshake...</span>
-                    </button>
+                    <!-- Stage 1: Initial -->
+                    <div *ngIf="verifyStage === 'initial'">
+                        <p
+                            style="margin-bottom: 1.5rem; font-size: 0.9rem; color: var(--text-muted); text-align: center;">
+                            Click to initiate the final security handshake.</p>
+                        <button (click)="onInitialVerify()" class="btn btn-secondary"
+                            style="width: 100%; padding: 1.2rem; font-weight: 700;">
+                            VERIFY HANDSHAKE
+                        </button>
+                    </div>
 
-                    <!-- Error Feedback -->
-                    <div *ngIf="error"
-                        style="margin-top: 1.5rem; padding: 1rem; background: #fee2e2; border-radius: 8px; color: #b91c1c; font-size: 0.9rem; border: 1px solid #fecaca;">
-                        {{ error }}
+                    <!-- Stage 2: Processing -->
+                    <div *ngIf="verifyStage === 'processing'" style="text-align: center; padding: 1rem;">
+                        <div class="spinner" style="margin: 0 auto 1.5rem;"></div>
+                        <h4 class="outfit" style="color: var(--secondary-color);">ENCRYPTING HANDSHAKE...</h4>
+                        <p style="font-size: 0.85rem; color: var(--text-muted);">This will take approx 3 seconds...</p>
+                    </div>
+
+                    <!-- Stage 3: Ready to Start -->
+                    <div *ngIf="verifyStage === 'ready-to-start'">
+                        <div
+                            style="background: #fff9db; padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem; border: 1px solid #ffd93d; text-align: center;">
+                            <p style="color: #856404; font-size: 0.9rem; font-weight: 600;">Secure Channel Established!
+                            </p>
+                        </div>
+                        <button (click)="onStartSync()" class="btn btn-primary"
+                            style="width: 100%; padding: 1.2rem; font-weight: 700;">
+                            START 15s CONTENT SYNC
+                        </button>
+                    </div>
+
+                    <!-- Stage 4: Timer Running -->
+                    <div *ngIf="verifyStage === 'timer-running'">
+                        <div
+                            style="padding: 2rem; background: #f8fafc; border-radius: 12px; margin-bottom: 1.5rem; text-align: center;">
+                            <div class="page-indicator"
+                                style="font-size: 1.4rem; padding: 1rem 2.5rem; border-color: var(--secondary-color); display: block; width: fit-content; margin: 0 auto;">
+                                {{ timeLeft }}s Handshake
+                            </div>
+                            <p style="margin-top: 1.5rem; font-size: 0.9rem; color: var(--text-muted);">
+                                Finzalizing credentials with premium labor feeds.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Stage 5: Timer Done (Click to Get Link) -->
+                    <div *ngIf="verifyStage === 'timer-done' && !isSuccess">
+                        <button (click)="onGetLink()" class="btn btn-primary"
+                            style="width: 100%; padding: 1.2rem; font-weight: 700;" [disabled]="isVerifying">
+                            <span *ngIf="!isVerifying">GET MY SECURE LINK</span>
+                            <span *ngIf="isVerifying">Verifying Handshake...</span>
+                        </button>
+                        <div *ngIf="error"
+                            style="margin-top: 1.5rem; padding: 1rem; background: #fee2e2; border-radius: 8px; color: #b91c1c; font-size: 0.9rem; border: 1px solid #fecaca;">
+                            {{ error }}
+                        </div>
+                    </div>
+
+                    <!-- Stage 6: Verified -->
+                    <div *ngIf="verifyStage === 'verified'" style="text-align: center; color: #2ecc71; padding: 1rem;">
+                        <h3 class="outfit">✅ Handshake Successful</h3>
+                        <p>Redirecting to premium Telegram network...</p>
                     </div>
                 </div>
 
-                <div *ngIf="isSuccess" class="animate-fade-in" style="text-align: center; color: #2ecc71;">
-                    <h3 class="outfit">✅ Handshake Successful</h3>
-                    <p>Redirecting to our premium Telegram network...</p>
-                </div>
+                <app-adsterra-ad [adKey]="adZones.banner"></app-adsterra-ad>
 
                 <div class="google-ad-footer" style="margin-top: 2rem;">
                     <app-adsterra-ad [adKey]="adZones.banner"></app-adsterra-ad>
