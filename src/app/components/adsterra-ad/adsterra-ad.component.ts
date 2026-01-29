@@ -8,7 +8,7 @@ import { environment } from '../../../environments/environment';
   imports: [CommonModule],
   template: `
     <div class="ad-container" [ngStyle]="customStyle">
-      <div [id]="'adsterra-key-' + adKey"></div>
+      <div [id]="format === 'native' ? 'container-' + adKey : 'adsterra-key-' + adKey"></div>
     </div>
   `,
   styles: [`
@@ -23,6 +23,7 @@ import { environment } from '../../../environments/environment';
 })
 export class AdsterraAdComponent implements AfterViewInit {
   @Input() adKey: string = environment.adsterra.banner;
+  @Input() format: 'banner' | 'native' = 'banner';
   @Input() customStyle: any = {};
 
   ngAfterViewInit() {
@@ -31,23 +32,36 @@ export class AdsterraAdComponent implements AfterViewInit {
 
   private injectAdScript() {
     try {
-      const container = document.getElementById('adsterra-key-' + this.adKey);
+      // For Native widgets, Adsterra looks for 'container-[key]'
+      // For standard banners, we use our own ID mapping
+      const containerId = this.format === 'native'
+        ? 'container-' + this.adKey
+        : 'adsterra-key-' + this.adKey;
+
+      const container = document.getElementById(containerId);
       if (!container) return;
 
-      // Adsterra requires a global atOptions object
-      (window as any).atOptions = {
-        'key': this.adKey,
-        'format': 'iframe',
-        'height': 90,
-        'width': 728,
-        'params': {}
-      };
-
-      const script = document.createElement('script');
-      script.type = 'text/javascript';
-      script.src = `//www.highperformanceformat.com/${this.adKey}/invoke.js`;
-
-      container.appendChild(script);
+      if (this.format === 'banner') {
+        (window as any).atOptions = {
+          'key': this.adKey,
+          'format': 'iframe',
+          'height': 90,
+          'width': 728,
+          'params': {}
+        };
+        const script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.src = `//www.highperformanceformat.com/${this.adKey}/invoke.js`;
+        container.appendChild(script);
+      } else {
+        // Native / Social Bar / Widget Layout
+        const script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.async = true;
+        script.setAttribute('data-cfasync', 'false');
+        script.src = `//pl28600090.effectivegatecpm.com/${this.adKey}/invoke.js`;
+        container.appendChild(script);
+      }
     } catch (e) {
       console.error('Adsterra initialization error', e);
     }

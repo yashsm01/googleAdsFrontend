@@ -45,57 +45,17 @@
                 <!-- Enhanced Multi-Click Verification Engine (Step 3) -->
                 <div style="margin: 2rem 0;">
 
-                    <!-- Stage 1: Initial -->
-                    <div *ngIf="verifyStage === 'initial'">
-                        <p
-                            style="margin-bottom: 1.5rem; font-size: 0.9rem; color: var(--text-muted); text-align: center;">
-                            Click to initiate the final security handshake.</p>
-                        <button (click)="onInitialVerify()" class="btn btn-secondary"
-                            style="width: 100%; padding: 1.2rem; font-weight: 700;">
-                            VERIFY HANDSHAKE
-                        </button>
-                    </div>
-
-                    <!-- Stage 2: Processing -->
-                    <div *ngIf="verifyStage === 'processing'" style="text-align: center; padding: 1rem;">
-                        <div class="spinner" style="margin: 0 auto 1.5rem;"></div>
-                        <h4 class="outfit" style="color: var(--secondary-color);">ENCRYPTING HANDSHAKE...</h4>
-                        <p style="font-size: 0.85rem; color: var(--text-muted);">This will take approx 3 seconds...</p>
-                    </div>
-
-                    <!-- Stage 3: Ready to Start -->
-                    <div *ngIf="verifyStage === 'ready-to-start'">
-                        <div
-                            style="background: #fff9db; padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem; border: 1px solid #ffd93d; text-align: center;">
-                            <p style="color: #856404; font-size: 0.9rem; font-weight: 600;">Secure Channel Established!
-                            </p>
-                        </div>
+                    <!-- Simplified Direct Click Action -->
+                    <div *ngIf="verifyStage === 'ready-to-start' || verifyStage === 'timer-done'"
+                        style="text-align: center;">
+                        <app-adsterra-ad [adKey]="adZones.banner"></app-adsterra-ad>
+                        <p style="margin-bottom: 1.5rem; color: var(--text-muted);">Confirm your market authority to
+                            generate the final link.</p>
                         <button (click)="onStartSync()" class="btn btn-primary"
-                            style="width: 100%; padding: 1.2rem; font-weight: 700;">
-                            START 15s CONTENT SYNC
-                        </button>
-                    </div>
-
-                    <!-- Stage 4: Timer Running -->
-                    <div *ngIf="verifyStage === 'timer-running'">
-                        <div
-                            style="padding: 2rem; background: #f8fafc; border-radius: 12px; margin-bottom: 1.5rem; text-align: center;">
-                            <div class="page-indicator"
-                                style="font-size: 1.4rem; padding: 1rem 2.5rem; border-color: var(--secondary-color); display: block; width: fit-content; margin: 0 auto;">
-                                {{ timeLeft }}s Handshake
-                            </div>
-                            <p style="margin-top: 1.5rem; font-size: 0.9rem; color: var(--text-muted);">
-                                Finzalizing credentials with premium labor feeds.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Stage 5: Timer Done (Click to Get Link) -->
-                    <div *ngIf="verifyStage === 'timer-done' && !isSuccess">
-                        <button (click)="onGetLink()" class="btn btn-primary"
-                            style="width: 100%; padding: 1.2rem; font-weight: 700;" [disabled]="isVerifying">
+                            style="width: 100%; padding: 1.5rem; font-weight: 800; font-size: 1.3rem; box-shadow: 0 4px 15px rgba(0,0,0,0.2);"
+                            [disabled]="isVerifying">
                             <span *ngIf="!isVerifying">GET MY SECURE LINK</span>
-                            <span *ngIf="isVerifying">Verifying Handshake...</span>
+                            <span *ngIf="isVerifying">AUTHENTICATING...</span>
                         </button>
                         <div *ngIf="error"
                             style="margin-top: 1.5rem; padding: 1rem; background: #fee2e2; border-radius: 8px; color: #b91c1c; font-size: 0.9rem; border: 1px solid #fecaca;">
@@ -103,14 +63,20 @@
                         </div>
                     </div>
 
-                    <!-- Stage 6: Verified -->
-                    <div *ngIf="verifyStage === 'verified'" style="text-align: center; color: #2ecc71; padding: 1rem;">
-                        <h3 class="outfit">✅ Handshake Successful</h3>
-                        <p>Redirecting to premium Telegram network...</p>
+                    <!-- Verified State -->
+                    <div *ngIf="verifyStage === 'verified'" style="text-align: center; color: #059669; padding: 1rem;">
+                        <div
+                            style="background: #ecfdf5; padding: 1.5rem; border-radius: 12px; border: 2px solid #10b981; margin-bottom: 1rem;">
+                            <h3 class="outfit">✅ Handshake Successful</h3>
+                            <p>Redirecting to premium network...</p>
+                        </div>
+                        <app-adsterra-ad [adKey]="adZones.banner"></app-adsterra-ad>
                     </div>
                 </div>
 
                 <app-adsterra-ad [adKey]="adZones.banner"></app-adsterra-ad>
+
+                <app-adsterra-ad [adKey]="adZones.native" format="native"></app-adsterra-ad>
 
                 <div class="google-ad-footer" style="margin-top: 2rem;">
                     <app-adsterra-ad [adKey]="adZones.banner"></app-adsterra-ad>

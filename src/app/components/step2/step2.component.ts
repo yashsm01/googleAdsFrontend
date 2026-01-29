@@ -90,9 +90,8 @@ export class Step2Component implements OnInit, OnDestroy {
     if (localStorage.getItem('step2_verified') === 'true') {
       this.verifyStage = 'verified';
       this.showContinueBtn = true;
-      setTimeout(() => {
-        window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
-      }, 500);
+    } else {
+      this.verifyStage = 'initial';
     }
   }
 
@@ -100,31 +99,20 @@ export class Step2Component implements OnInit, OnDestroy {
     this.stopTimer();
   }
 
-  onInitialVerify() {
-    this.verifyStage = 'processing';
-    setTimeout(() => {
-      this.verifyStage = 'ready-to-start';
-    }, 3000);
-  }
-
   onStartTimer() {
     this.verifyStage = 'timer-running';
     this.startTimer();
   }
 
-  onVerifyClick() {
-    localStorage.setItem('step2_verified', 'true');
-    this.verifyStage = 'verified';
-    this.showContinueBtn = true;
-    window.location.reload();
-  }
-
   startTimer() {
+    this.timerStarted = true;
     this.interval = setInterval(() => {
       if (this.timeLeft > 0) {
         this.timeLeft--;
       } else {
         this.stopTimer();
+        this.verifyStage = 'verified';
+        this.showContinueBtn = true;
       }
     }, 1000);
   }
@@ -136,6 +124,7 @@ export class Step2Component implements OnInit, OnDestroy {
   }
 
   onContinueClick() {
+    localStorage.setItem('step2_verified', 'true');
     this.verifyService.completeStep2();
     window.location.href = '/verify/step3';
   }

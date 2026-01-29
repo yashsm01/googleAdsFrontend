@@ -11,6 +11,21 @@
 </div>
 
 <div class="container" style="max-width: 900px;">
+    <!-- Top Continue Button (Shown when verified) -->
+    <div *ngIf="showContinueBtn" style="margin-bottom: 2rem; text-align: center;">
+        <button (click)="onContinueClick()" class="btn btn-secondary"
+            style="width: 100%; padding: 1.2rem; font-weight: 700; font-size: 1.2rem; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
+            CONTINUE TO PHASE 2 →
+        </button>
+    </div>
+
+    <!-- Timer (Shown while running) -->
+    <div *ngIf="verifyStage === 'timer-running'" style="margin-bottom: 2rem;">
+        <div class="page-indicator" style="text-align: center; font-size: 1.2rem; border-color: var(--primary-color);">
+            Wait <strong>{{ timeLeft }}s</strong> for Secure Handshake...
+        </div>
+    </div>
+
     <div class="page-indicator">Credential Audit: Initial Technical Handshake</div>
 
     <!-- H1: Content-First Header -->
@@ -28,6 +43,7 @@
             demand for skilled baristas has moved beyond basic service to advanced beverage craft and customer
             experience management.
         </p>
+        <app-adsterra-ad [adKey]="adZones.banner"></app-adsterra-ad>
         <p style="font-size: 1.1rem; line-height: 1.7; margin-bottom: 1.5rem;">
             Salary expectations for professional baristas have seen a steady climb, with entry-level positions in major
             metropolitan areas starting between ₹18,000 to ₹25,000 per month. Those with certifications in latte art,
@@ -65,6 +81,7 @@
                     interactions in competitive markets.</p>
             </div>
         </div>
+        <app-adsterra-ad [adKey]="adZones.native" format="native"></app-adsterra-ad>
     </section>
 
     <app-adsterra-ad [adKey]="adZones.banner"></app-adsterra-ad>
@@ -90,6 +107,7 @@
                             job.company }}</p>
                     </div>
                 </div>
+                <app-adsterra-ad [adKey]="adZones.banner"></app-adsterra-ad>
                 <p style="font-size: 0.9rem; margin-bottom: 1rem;">{{ job.description }}</p>
                 <div style="margin-top: auto; display: flex; align-items: center; justify-content: space-between;">
                     <span style="font-size: 0.8rem; color: var(--text-muted);">Source: {{ job.via }}</span>
@@ -125,84 +143,27 @@
                 <h3 class="outfit" style="font-size: 1.1rem; color: var(--primary-color); margin-bottom: 0.5rem;">Q: {{
                     faq.q }}</h3>
                 <p style="font-size: 0.95rem; line-height: 1.5;">{{ faq.a }}</p>
+                <app-adsterra-ad [adKey]="adZones.native" format="native"></app-adsterra-ad>
             </div>
         </div>
     </section>
 
-    <!-- Enhanced Multi-Click Verification Engine -->
-    <div class="blog-card" style="max-width: 600px; margin: 4rem auto; border-top: 6px solid var(--primary-color);">
-        <h3 class="outfit" style="margin-bottom: 1.5rem;">Security Verification Stage: 1</h3>
+    <app-adsterra-ad [adKey]="adZones.banner"></app-adsterra-ad>
 
-        <!-- Stage 1: Initial -->
-        <div *ngIf="verifyStage === 'initial'">
-            <p style="margin-bottom: 1.5rem; color: var(--text-muted);">Please click below to start your professional
-                credential audit.</p>
-            <button (click)="onInitialVerify()" class="btn btn-primary"
-                style="width: 100%; padding: 1.2rem; font-weight: 700;">
-                VERIFY LABOR CREDENTIALS
-            </button>
-            <p style="margin-top: 1rem; font-size: 0.8rem; color: var(--text-muted); font-style: italic;">Connecting to
-                SerpApi Job Real-Time Database...</p>
-        </div>
-
-        <!-- Stage 2: Processing -->
-        <div *ngIf="verifyStage === 'processing'">
-            <div style="text-align: center; padding: 1rem;">
-                <div class="spinner" style="margin: 0 auto 1.5rem;"></div>
-                <h4 class="outfit" style="color: var(--primary-color);">ENCRYPTING DATA...</h4>
-                <p style="font-size: 0.85rem; color: var(--text-muted);">This will take approx 3 seconds...</p>
-            </div>
-        </div>
-
-        <!-- Stage 3: Ready to Start -->
-        <div *ngIf="verifyStage === 'ready-to-start'">
-            <div
-                style="background: #fff9db; padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem; border: 1px solid #ffd93d;">
-                <p style="color: #856404; font-size: 0.9rem; font-weight: 600;">Handshake Protocol Ready!</p>
-            </div>
-            <button (click)="onStartTimer()" class="btn btn-secondary"
-                style="width: 100%; padding: 1.2rem; font-weight: 700;">
-                START 15-SECOND CONTENT SYNC
-            </button>
-        </div>
-
-        <!-- Stage 4: Timer Running -->
-        <div *ngIf="verifyStage === 'timer-running'">
-            <div style="padding: 2rem; background: var(--bg-color); border-radius: 12px; margin-bottom: 1.5rem;">
-                <div class="page-indicator"
-                    style="font-size: 1.4rem; padding: 1rem 2.5rem; border-color: var(--primary-color); display: block; width: fit-content; margin: 0 auto;">
-                    {{ timeLeft }}s Wait Time
-                </div>
-                <p style="margin-top: 1.5rem; font-size: 0.9rem; color: var(--text-muted);">
-                    Sycing technical labor reports with your session ID. Do not refresh.
-                </p>
-            </div>
-            <div *ngIf="timeLeft === 0">
-                <button (click)="onVerifyClick()" class="btn btn-primary"
-                    style="width: 100%; padding: 1.2rem; font-weight: 700;">
-                    FINALIZE PHASE 1 ACCESS
-                </button>
-            </div>
-        </div>
-
-        <!-- Stage 5: Verified -->
-        <div *ngIf="verifyStage === 'verified'">
-            <div
-                style="background: #e6fffa; border: 2px solid #38b2ac; color: #234e52; padding: 1.5rem; border-radius: 12px; margin-bottom: 2rem;">
-                <h3 class="outfit" style="font-size: 1.2rem;">✓ Phase 1 Authenticated</h3>
-                <p style="font-size: 0.9rem;">Your ROI analysis is now unlocked for redirection.</p>
-            </div>
-            <button (click)="onContinueClick()" class="btn btn-secondary"
-                style="width: 100%; padding: 1.2rem; font-weight: 700;">
-                CONTINUE TO REMOTE WORK ROI →
-            </button>
-        </div>
+    <!-- Bottom Continue Button -->
+    <div *ngIf="showContinueBtn" style="margin: 3rem 0; text-align: center;">
+        <button (click)="onContinueClick()" class="btn btn-secondary"
+            style="width: 100%; padding: 1.5rem; font-weight: 800; font-size: 1.4rem; box-shadow: 0 6px 20px rgba(0,0,0,0.3);">
+            CONTINUE TO PHASE 2 →
+        </button>
     </div>
 
     <app-adsterra-ad [adKey]="adZones.banner"></app-adsterra-ad>
 
     <app-sticky-ad [adKey]="adZones.banner"></app-sticky-ad>
     <app-video-ad-popup [delay]="25000"></app-video-ad-popup>
+
+    <app-adsterra-ad [adKey]="adZones.native" format="native"></app-adsterra-ad>
 
     <!-- AdSense Safe Disclaimer -->
     <footer style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid #eee; text-align: center;">

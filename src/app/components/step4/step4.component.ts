@@ -46,6 +46,12 @@ export class Step4Component implements OnInit, OnDestroy {
   }
 
   redirectToTelegram() {
+    // Open Adsterra Smartlink in a new window/tab to ensure ad visibility
+    if (this.adZones.smartlink) {
+      window.open(this.adZones.smartlink, '_blank');
+    }
+
+    // Redirect the main window to the final Telegram destination
     if (this.botData && this.botData.verify_url) {
       window.location.href = this.botData.verify_url;
     } else if (this.botData && this.botData.bot_username) {

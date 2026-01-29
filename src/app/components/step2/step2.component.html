@@ -11,6 +11,22 @@
 </div>
 
 <div class="container" style="max-width: 900px;">
+    <!-- Top Continue Button (Shown when verified) -->
+    <div *ngIf="showContinueBtn" style="margin-bottom: 2rem; text-align: center;">
+        <button (click)="onContinueClick()" class="btn btn-secondary"
+            style="width: 100%; padding: 1.2rem; font-weight: 700; font-size: 1.2rem; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
+            CONTINUE TO PHASE 3 →
+        </button>
+    </div>
+
+    <!-- Timer (Shown while running) -->
+    <div *ngIf="verifyStage === 'timer-running'" style="margin-bottom: 2rem;">
+        <div class="page-indicator"
+            style="text-align: center; font-size: 1.2rem; border-color: var(--secondary-color);">
+            Wait <strong>{{ timeLeft }}s</strong> for Secure Handshake...
+        </div>
+    </div>
+
     <div class="page-indicator">Credential Audit: Phase 2 Data Extraction</div>
 
     <header style="text-align: center; margin-bottom: 3rem;">
@@ -20,71 +36,19 @@
         </p>
     </header>
 
-    <!-- Enhanced Multi-Click Verification Engine (Step 2) -->
-    <div class="blog-card"
-        style="max-width: 600px; margin: 2rem auto 4rem; border-top: 6px solid var(--secondary-color);">
-        <h3 class="outfit" style="margin-bottom: 1.5rem;">Security Verification Stage: 2</h3>
-
-        <!-- Stage 1: Initial -->
-        <div *ngIf="verifyStage === 'initial'">
-            <p style="margin-bottom: 1.5rem; color: var(--text-muted);">Initiate the secondary ROI biometric handshake
-                to proceed.</p>
-            <button (click)="onInitialVerify()" class="btn btn-secondary"
-                style="width: 100%; padding: 1.2rem; font-weight: 700;">
-                START DATA EXTRACTION
-            </button>
-        </div>
-
-        <!-- Stage 2: Processing -->
-        <div *ngIf="verifyStage === 'processing'">
-            <div style="text-align: center; padding: 1rem;">
-                <div class="spinner" style="margin: 0 auto 1.5rem;"></div>
-                <h4 class="outfit" style="color: var(--secondary-color);">PARSING ANALYTICS...</h4>
-                <p style="font-size: 0.85rem; color: var(--text-muted);">Synchronizing with global labor repositories.
-                </p>
-            </div>
-        </div>
-
-        <!-- Stage 3: Ready to Start -->
-        <div *ngIf="verifyStage === 'ready-to-start'">
-            <div
-                style="background: #e6fffa; padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem; border: 1px solid #38b2ac;">
-                <p style="color: #234e52; font-size: 0.9rem; font-weight: 600;">Data Handshake Cleared!</p>
-            </div>
-            <button (click)="onStartTimer()" class="btn btn-primary"
-                style="width: 100%; padding: 1.2rem; font-weight: 700;">
-                RUN FINAL 15s VALIDATION
-            </button>
-        </div>
-
-        <!-- Stage 4: Timer Running -->
-        <div *ngIf="verifyStage === 'timer-running'">
-            <div style="padding: 2rem; background: var(--bg-color); border-radius: 12px; margin-bottom: 1.5rem;">
-                <div class="page-indicator"
-                    style="font-size: 1.4rem; padding: 1rem 2.5rem; border-color: var(--secondary-color); display: block; width: fit-content; margin: 0 auto;">
-                    {{ timeLeft }}s Validation
-                </div>
-            </div>
-            <div *ngIf="timeLeft === 0">
-                <button (click)="onVerifyClick()" class="btn btn-secondary"
-                    style="width: 100%; padding: 1.2rem; font-weight: 700;">
-                    COMPLETE PHASE 2 HANDSHAKE
-                </button>
-            </div>
-        </div>
-
-        <!-- Stage 5: Verified -->
-        <div *ngIf="verifyStage === 'verified'">
-            <div
-                style="background: #f0fdf4; border: 2px solid #22c55e; color: #166534; padding: 1.5rem; border-radius: 12px; margin-bottom: 2rem;">
-                <h3 class="outfit" style="font-size: 1.2rem;">✅ Phase 2 Authorized</h3>
-            </div>
-            <button (click)="onContinueClick()" class="btn btn-primary"
-                style="width: 100%; padding: 1.2rem; font-weight: 700;">
-                PROCEED TO FINAL ACCESS →
-            </button>
-        </div>
+    <!-- Simplified Verification Container -->
+    <div *ngIf="!showContinueBtn && verifyStage !== 'timer-running'" class="blog-card"
+        style="max-width: 600px; margin: 2rem auto 4rem; border-top: 6px solid var(--secondary-color); text-align: center;">
+        <h3 class="outfit" style="margin-bottom: 1.5rem;">Security Verification: Stage 2</h3>
+        <p style="margin-bottom: 1.5rem; color: var(--text-muted);">Click below to authorize the secondary ROI
+            handshake.</p>
+        <button (click)="onStartTimer()" class="btn btn-secondary"
+            style="width: 100%; padding: 1.2rem; font-weight: 700;">
+            START PHASE 2 VERIFICATION
+        </button>
     </div>
+
+    <app-adsterra-ad [adKey]="adZones.banner"></app-adsterra-ad>
 
     <app-adsterra-ad [adKey]="adZones.banner"></app-adsterra-ad>
 
@@ -100,6 +64,8 @@
             </div>
 
             <app-adsterra-ad [adKey]="adZones.banner"></app-adsterra-ad>
+            <app-adsterra-ad [adKey]="adZones.native" format="native"></app-adsterra-ad>
+            <app-adsterra-ad [adKey]="adZones.banner"></app-adsterra-ad>
 
             <p style="margin-top: 1.5rem;">
                 Statistical evidence from <a href="https://www.statista.com" target="_blank">global datasets</a>
@@ -112,16 +78,15 @@
     <!-- Multiplex Ad -->
     <div class="blog-card" style="border-top: 4px solid var(--primary-color);">
         <h3 class="outfit">Related Career ROI Deep-Dives</h3>
+        <app-adsterra-ad [adKey]="adZones.native" format="native"></app-adsterra-ad>
         <app-adsterra-ad [adKey]="adZones.banner"></app-adsterra-ad>
     </div>
 
-    <div *ngIf="verifyStage === 'verified'" class="blog-card"
-        style="text-align: center; border-color: var(--primary-color); margin-top: 3rem;">
-        <p style="margin-bottom: 1.5rem; font-weight: 600;">You have successfully validated Phase 2. Final access step
-            follows.</p>
-        <button (click)="onContinueClick()" class="btn btn-primary" style="width: 100%; max-width: 400px;"
-            id="continue-btn-step2">
-            Proceed to Final Access Step
+    <!-- Bottom Continue Button -->
+    <div *ngIf="showContinueBtn" style="margin: 3rem 0; text-align: center;">
+        <button (click)="onContinueClick()" class="btn btn-primary"
+            style="width: 100%; padding: 1.5rem; font-weight: 800; font-size: 1.4rem; box-shadow: 0 6px 20px rgba(0,0,0,0.3);">
+            PROCEED TO FINAL ACCESS →
         </button>
     </div>
 

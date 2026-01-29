@@ -32,36 +32,16 @@ export class Step3Component implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    // Initial state is 'initial' - wait for user click
+    this.verifyStage = 'ready-to-start';
   }
 
   ngOnDestroy() {
     this.stopTimer();
   }
 
-  onInitialVerify() {
-    this.verifyStage = 'processing';
-    setTimeout(() => {
-      this.verifyStage = 'ready-to-start';
-    }, 3000);
-  }
-
   onStartSync() {
-    this.verifyStage = 'timer-running';
-    this.startTimer();
-  }
-
-  startTimer() {
-    this.interval = setInterval(() => {
-      if (this.timeLeft > 0) {
-        this.timeLeft--;
-      } else {
-        this.verifyStage = 'timer-done';
-        this.showGetLinkBtn = true;
-        this.isTyping = false;
-        this.stopTimer();
-      }
-    }, 1000);
+    // Stage 3 now bypasses the wait and goes directly to validation
+    this.onGetLink();
   }
 
   stopTimer() {
