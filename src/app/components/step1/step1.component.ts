@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { VerifyService } from '../../services/verify.service';
-import { PropellerAdComponent } from '../propeller-ad/propeller-ad.component';
+import { AdsterraAdComponent } from '../adsterra-ad/adsterra-ad.component';
 import { StickyAdComponent } from '../sticky-ad/sticky-ad.component';
 import { VideoAdPopupComponent } from '../video-ad-popup/video-ad-popup.component';
 import { environment } from '../../../environments/environment';
@@ -10,7 +10,7 @@ import { environment } from '../../../environments/environment';
 @Component({
   selector: 'app-step1',
   standalone: true,
-  imports: [CommonModule, PropellerAdComponent, StickyAdComponent, VideoAdPopupComponent],
+  imports: [CommonModule, AdsterraAdComponent, StickyAdComponent, VideoAdPopupComponent],
   templateUrl: './step1.component.html',
   styleUrl: './step1.component.css'
 })

@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { environment } from '../../../environments/environment';
 
 @Component({
-  selector: 'app-propeller-ad',
+  selector: 'app-adsterra-ad',
   standalone: true,
   imports: [CommonModule],
   template: `
@@ -21,7 +21,7 @@ import { environment } from '../../../environments/environment';
     }
   `]
 })
-export class PropellerAdComponent implements AfterViewInit {
+export class AdsterraAdComponent implements AfterViewInit {
   @Input() adKey: string = environment.adsterra.banner;
   @Input() customStyle: any = {};
 

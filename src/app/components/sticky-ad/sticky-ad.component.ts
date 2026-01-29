@@ -1,12 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PropellerAdComponent } from '../propeller-ad/propeller-ad.component';
+import { AdsterraAdComponent } from '../adsterra-ad/adsterra-ad.component';
 import { environment as env } from '../../../environments/environment';
 
 @Component({
   selector: 'app-sticky-ad',
   standalone: true,
-  imports: [CommonModule, PropellerAdComponent],
+  imports: [CommonModule, AdsterraAdComponent],
   template: `
     <div class="sticky-ad-wrapper" *ngIf="isVisible">
       <div class="sticky-ad-content">
@@ -16,8 +16,8 @@ import { environment as env } from '../../../environments/environment';
             <line x1="6" y1="6" x2="18" y2="18"></line>
           </svg>
         </button>
-        <app-propeller-ad [adKey]="adKey"
-            [customStyle]="{'margin': '0', 'min-height': '60px'}"></app-propeller-ad>
+        <app-adsterra-ad [adKey]="adKey"
+            [customStyle]="{'margin': '0', 'min-height': '60px'}"></app-adsterra-ad>
       </div>
     </div>
   `,

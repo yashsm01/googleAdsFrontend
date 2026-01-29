@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PropellerAdComponent } from './propeller-ad.component';
+import { AdsterraAdComponent } from './adsterra-ad.component';
 
-describe('PropellerAdComponent', () => {
-  let component: PropellerAdComponent;
-  let fixture: ComponentFixture<PropellerAdComponent>;
+describe('AdsterraAdComponent', () => {
+  let component: AdsterraAdComponent;
+  let fixture: ComponentFixture<AdsterraAdComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PropellerAdComponent]
+      imports: [AdsterraAdComponent]
     })
       .compileComponents();
 
-    fixture = TestBed.createComponent(PropellerAdComponent);
+    fixture = TestBed.createComponent(AdsterraAdComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

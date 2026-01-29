@@ -2,13 +2,13 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { VerifyService } from '../../services/verify.service';
-import { PropellerAdComponent } from '../propeller-ad/propeller-ad.component';
+import { AdsterraAdComponent } from '../adsterra-ad/adsterra-ad.component';
 import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-step3',
   standalone: true,
-  imports: [CommonModule, PropellerAdComponent],
+  imports: [CommonModule, AdsterraAdComponent],
   templateUrl: './step3.component.html',
   styleUrl: './step3.component.css'
 })
